@@ -103,6 +103,11 @@ jQuery(document).ready(function(t) {
             $(__this).find('.head').css({'border-radius': '0px'})
         }
     }),
+    /** scrolling to the top */
+    $('.tothetop').on('click',function(e){
+        e.preventDefault(),
+        $('html, body').animate({scrollTop: '0px'}, 200)
+    }),
     /** Preloader */
     $(".content").fadeIn('slow');
 });
