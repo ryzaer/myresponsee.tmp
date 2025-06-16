@@ -89,7 +89,7 @@
   overflow:hidden;
   z-index:1; 
   width:100%;        
-  background: url(../image/polkadot.png) repeat-x center; 
+  background: url(../image/line-left.webp) repeat-x center; 
   height:20px;
   border-radius:50px; 
 }
@@ -927,4 +927,23 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
 }
 .icon_link_go:hover {
 	color: #d2d2d2;
+}
+/* background https://www.toptal.com/designers/subtlepatterns/tag/brick/ */
+.latar-batik1 {
+  background-image: url('../image/batik-1.webp');
+}
+.latar-batik2 {
+  background-image: url('../image/batik-2.webp');
+}
+.latar-batik3 {
+  background-image: url('../image/batik-3.webp');
+}
+.latar-batik4 {
+  background-image: url('../image/batik-4.webp');
+}
+.latar-garis-diagonal {
+  background-image: url('../image/funky-lines.webp');
+}
+.latar-bata {
+  background-image: url('../image/white_brick_wall.webp');
 }
