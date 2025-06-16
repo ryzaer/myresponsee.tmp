@@ -1,0 +1,339 @@
+/** primary input here **/
+
+div.stars{	
+  overflow: hidden;
+  display:inline-block;
+}
+
+input[type="radio"].star{
+  display: none;
+}
+
+label.star {
+  padding: 10px 15px 10px 15px;
+  font-style:normal;
+  float: right;	
+  font-size: 20px;
+  color: #2f363d;
+  transition: all .2s;
+}
+
+input[type="radio"].star:checked ~ label.star:before {
+  content:"\2605";
+  color: #ff8044;
+  transition: all .25s;
+}
+
+
+input[type="radio"].star-4:checked ~ label.star:before {
+  color:#009900;
+	animation: glow 1s infinite alternate;	
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 30px #ff4cff;
+  }
+  to {
+    text-shadow: 0 0 30px #ffffff;
+  }
+}
+
+input[type="radio"].star-3:checked ~ label.star:before {
+  color: #009900;
+}
+
+input[type="radio"].star-2:checked ~ label.star:before {
+  color: #e59400;
+}
+
+input[type="radio"].star-1:checked ~ label.star:before {
+  color: #cc0000;
+}
+
+
+label.star:before{
+  content:"\2606";
+  font-family: 'mfg';
+}
+
+
+
+
+input[type=date] {
+    position: relative;
+}
+
+input[type=date]:before {
+    position: absolute;   
+    content: attr(data-date);	
+    display: inline-block;
+	background-color:white;
+}
+
+input[type=date]::-webkit-datetime-edit, input[type=date]::-webkit-inner-spin-button, input[type=date]::-webkit-clear-button {
+    display: none;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 0;
+    opacity: 1;
+	color:#2f363d;
+}
+
+select,input,textarea{
+	border: #5b5b5b 1px solid;
+	border-radius: 4px;		
+	padding:3px 5px 3px 5px;
+	margin:3px 0px 7px 0px;
+	width:100%;
+	text-decoration: none;
+	outline: none;
+}
+
+select,input{ height:25px;background-color:white;margin-top:-1px; }
+textarea{ height:50px;margin:-1px 0px 3px 0px; }
+select:focus, textarea:focus, input:focus{ outline: none; }
+
+/** primary input here **/
+
+.customCheck{
+	position:absolute;
+	display:inline-block;
+	font-family: 'mfg', Arial;
+	font-size:17px;
+	font-style:normal;
+	vertical-align: middle;
+	line-height: 17px;  
+	color:#5b5b5b;
+	
+}
+
+.chkJingga[type=checkbox] { display:none; }
+.chkJingga[type=checkbox] + label:before {
+	display:inline-block;
+	font-family: 'mfg';
+	font-size:17px;
+	font-weight:bold;
+	font-style:normal;
+	vertical-align: middle;
+	line-height: 17px;  
+}
+
+.chkJingga[type=checkbox] + label:before { content: "\f06d";color:#5b5b5b} 
+.chkJingga[type=checkbox] + label:before { letter-spacing: 5px;} 
+
+.chkJingga[type=checkbox]:checked + label:before { content: "\f06d"; color:#e59400 }
+.chkJingga[type=checkbox]:checked + label:before { letter-spacing: 5px; } 
+
+.fileTags { overflow: hidden; position: relative; }
+.fileTags [type=file] {
+	cursor: inherit;
+	display: inline-block;
+	filter: alpha(opacity=0);
+	min-height: 100%;
+	min-width: 100%;	
+	position: absolute;
+	top: 0;
+	opacity: 0;
+	right: 0;
+}
+.fileShow:hover {background-color:#2f363d;}
+.fileShow {
+	display: block;
+	border: #2f363d 2px solid;
+	border-radius: 5px;
+	width:100%;
+	max-height:200px;
+	padding:0px ;
+	margin:3px 0px 7px 0px;
+	background-color:#47515b;
+}
+
+
+.addButton, .rmvButton {
+	font-family: 'mfg',Tahoma;
+	background-color:white;
+	font-size:12px;
+	border-radius:20px;			
+	padding:2px 5px 2px 5px;
+}
+.addButton:active, .rmvButton:active {
+	display:relative;
+	padding:4px 7px 4px 7px;	
+}
+
+.addButton:hover, .rmvButton:hover {
+	color:#e59400;
+	border:#e59400 1px solid;
+}
+.addButton{	
+	margin-top:5px;	
+	color:green;
+	border:green 1px solid;	
+}
+.addButton:active {
+	margin: 3px 0px -2px 0px;
+}
+.rmvButton {
+	margin:0px 0px 3px 0px;
+	float:right;
+	border:red 1px solid;
+	color:red;
+}
+.rmvButton:active {
+	margin: -1px 0px 0px 0px;
+}
+
+.rmvButton_disabled {
+	font-family: 'mfg',Tahoma;
+	background-color:white;
+	font-size:12px;
+	border-radius:20px;			
+	padding:2px 5px 2px 5px;
+	margin:0px 0px 3px 0px;
+	float:right;
+	border:grey 1px solid;
+	color:grey;
+}
+
+.wideBox{width:100%;}
+
+.yesButton[type=button], 
+.noButton[type=button],
+.verifyButton[type=button], 
+.nextButton[type=button], 
+.prevButton[type=button], 
+.daftarButton[type=button],
+.saveButton[type=submit] { display:none; }
+
+.yesButton[type=button] + label:before , 
+.noButton[type=button] + label:before ,
+.verifyButton[type=button] + label:before , 
+.prevButton[type=button] + label:before ,
+.nextButton[type=button] + label:before,
+.daftarButton[type=button] + label:before,
+.saveButton[type=submit] + label:before  {
+	display:inline-block;
+	font-family: 'mfg', Tahoma;
+	font-size:1rem;
+	font-style:normal;
+	vertical-align: middle;
+	line-height: 1rem;  
+	padding: 6px;
+	vertical-align:middle;	
+	border-radius: 20px;
+	background-color:#ffffff;
+	 -webkit-font-smoothing: antialiased;
+	 -moz-osx-font-smoothing: grayscale;
+}
+
+.nextButton[type=button] + label:before { content: "Selanjutnya \2192"; color:#2f363d; border: #2f363d 1px solid;} 
+.nextButton[type=button]:hover + label:before { content: "Selanjutnya \2192"; color:#e59400; border: #e59400 1px solid; }
+
+.prevButton[type=button] + label:before { content: "\2190  Sebelumnya"; color:#2f363d; border: #2f363d 1px solid;} 
+.prevButton[type=button]:hover + label:before { content: "\2190  Sebelumnya"; color:#e59400; border: #e59400 1px solid; }
+
+.daftarButton[type=button] + label:before { content: "Proses Persyaratan  \f02c"; color:#007200 ;border: #007200 1px solid;} 
+.daftarButton[type=button]:hover + label:before { content: "Proses Persyaratan  \f02c"; color:#e59400; border: #e59400 1px solid; }
+
+.saveButton[type=submit] + label:before { content: "\2713  Selesai"; color:#007200; border:#007200 1px solid;} 
+.saveButton[type=submit]:hover + label:before { content: "\2713  Selesai"; color:#e59400; border: #e59400 1px solid; }
+
+.yesButton[type=button] + label:before { content: "\2713  Ya, Saya ingin mendaftar"; color:#007200; border:#007200 1px solid;} 
+.yesButton[type=button]:hover + label:before { content: "\2713  Ya, Saya ingin mendaftar"; color:#e59400; border: #e59400 1px solid; }
+
+.noButton[type=button] + label:before { content: "\274C  Tidak"; color:#cc0000; border:#cc0000 1px solid;} 
+.noButton[type=button]:hover + label:before { content: "\274C  Tidak"; color:#e59400; border: #e59400 1px solid; }
+
+.verifyButton[type=button] + label:before { content: "\2713  Proses Verifikasi"; color:#007200; border:#007200 1px solid;} 
+.verifyButton[type=button]:hover + label:before { content: "\2713  Proses Verifikasi"; color:#e59400; border: #e59400 1px solid; }
+
+/**
+#signup-step{margin:auto;}
+#signup-step li{list-style:none; float:left;border:black 1px solid;margin:0px 20px 0px 0px;padding:5px;border-radius:50%;}
+.active{color:white;}
+#signup-step li.active{background-color:grey;} **/
+#signup-form{clear:both;}
+
+#signup-step li {	
+  width: 4em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  background-color: #ffa500;
+  margin: 0 5% 0 0;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+#signup-step li::before{
+  content: '';
+  position: absolute;
+  top: .9em;
+  left: -90.2%;
+  width: 90%;
+  height: .2em;
+  background-color: #ffa500;
+  z-index: -1;
+}
+
+
+#signup-step li:first-child::before {
+  display: none;
+}
+
+#signup-step li.active {
+  background: #ffa500;
+}
+
+#signup-step li.active ~ li {
+  background: #5b5b5b;
+}
+
+#signup-step li.active ~ li::before {
+  background: #5b5b5b;
+}
+
+.img{
+	display:none;
+}
+
+/**** Punya SKCK *****/
+
+
+#processing {display:none}
+
+label{
+	font-style:italic;
+}
+
+.next{font-family:'mfg'; content: "\2192";}
+.back{font-family:'mfg'; content: "\2192";}
+.finish{font-family:'mfg'; content: "\2713";}
+.signup-error{color:#cc0000;font-size:70%;font-style:italic;font-weight:bold;padding-left:15px;}
+.message {
+	color: #fb4314;
+	font-size: 19px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
+.subfrm1{margin:2px 0px 0px 0px;}
+.subfrm2{border-radius:5px; border: #5b5b5b 1px solid;margin:5px 0px 5px 0px;padding-right:5px;background-color:#fef3cf}
+.subfrm2a{padding:5px;}
+.subfrm3{padding:5px 0px 3px 0px;margin-right:-10px}
+.subfrm3a{border-radius:5px; border: #5b5b5b 1px solid;padding-right:5px;margin:5px 0px 0px 0px;background-color:#ffffb2}
+.subfrm3b{padding-right:5px;margin:5px 0px 0px 0px;}
+
+.subfrm4{padding:3px 0px 3px 5px;margin:-5px 0px -5px 0px;}	
+
+.infoHijau{font-size:9px;color:green;vertical-align:middle;}
+.infoMerah{font-size:9px;color:#cc0000}
+.infoJingga{font-size:9px;color:#e59400}
+
+#hideGelar1, #hideGelar2 {display:none;}

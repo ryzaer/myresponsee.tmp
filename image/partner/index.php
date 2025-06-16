@@ -1,0 +1,1 @@
+<?php exit("404: No request from dependency's scripts!"); ?>

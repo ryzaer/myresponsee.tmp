@@ -1,0 +1,1 @@
+<?php $_POST = null; $_GET = null; ?>
