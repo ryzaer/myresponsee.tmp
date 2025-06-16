@@ -1,0 +1,2 @@
+# myresponsee.tmp
+Template Myresponsee
