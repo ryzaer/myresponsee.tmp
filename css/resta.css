@@ -3,28 +3,7 @@
  * https://www.polrestapontaianakkota.org
  * Copyright by riza.
 */
-/* FONT ICONS*/
-@font-face {
-font-family: 'mfg';
-src: url('../font/mfglabsiconset-webfont.eot');
-src: url('../font/mfglabsiconset-webfont.svg#mfg_labs_iconsetregular') format('svg'),
-	 url('../font/mfglabsiconset-webfont.eot?#iefix') format('embedded-opentype'),
-	 url('../font/mfglabsiconset-webfont.woff') format('woff'),
-	 url('../font/mfglabsiconset-webfont.ttf') format('truetype');
-font-weight: normal;
-font-style: normal;
-}
-@font-face {
-font-family: 'WebSymbolsRegular';
-src: url('../font/websymbols-regular-webfont.eot');
-src: url('../font/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-	 url('../font/websymbols-regular-webfont.woff') format('woff'),
-	 url('../font/websymbols-regular-webfont.ttf') format('truetype'),
-	 url('../font/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
-font-weight: normal;
-font-style: normal;
-}	  
-/* FONT TEXT*/
+
 @font-face {
   font-family: 'Gtwalsheim';
   src: url('../font/Gt-Walsheim-Web/gt-walsheim-web.eot');
@@ -76,10 +55,10 @@ font-style: normal;
   background:#2b2b2b;        
   border-radius:9px;
     -moz-border-radius:9px;
-     -webkit-border-radius:9px;
+    -webkit-border-radius:9px;
 }
 .footer-bg p, .footer-bg h4, .footer-bg table {
-    font-size:12px;
+  font-size:12px;
 	color:white;
 }
 .hr-bg-start h6 {
@@ -197,17 +176,13 @@ font-style: normal;
 	transition: all 300ms ease-in-out;
 	border-radius:9px;
 	 -moz-border-radius:9px;
-	 -webkit-border-radius:9px;			
-	
+	 -webkit-border-radius:9px;	
 	 -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-	 -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);			
-	
+	 -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);	
 	 -webkit-transition: all 300ms ease-in-out;
 	 -moz-transition: all 300ms ease-in-out;
 	 -o-transition: all 300ms ease-in-out;
-	 -ms-transition: all 300ms ease-in-out;
-	
-	
+	 -ms-transition: all 300ms ease-in-out;	
 }
 .ca-menu li:last-child{
 	margin-bottom: 0px;
@@ -252,8 +227,7 @@ font-style: normal;
 	-moz-transition: all 300ms linear;
 	-o-transition: all 300ms linear;
 	-ms-transition: all 300ms linear;
-	transition: all 300ms linear; 
-	
+	transition: all 300ms linear; 	
 }
 .ca-sub{
 	font-size: small;
@@ -560,16 +534,14 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
   top:2px;
   left:1px;
 }
-.bulat-glossy-gbr {
-  	
+.bulat-glossy-gbr {  	
   position:relative;
   width: 100px;
   height: 100px;
   opacity: 0.8;
   border: 2px solid grey;
   border-radius: 50%;
-	-webkit-box-shadow: 0px 1px 2px #4d4d4d;
-  
+	-webkit-box-shadow: 0px 1px 2px #4d4d4d;  
 }
 .kotak-glossy {
   width: 100px;
@@ -586,23 +558,20 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
   opacity: 0.9;
   background: linear-gradient( /* chrome */
     hsla(0, 0%, 100%, 0.6), hsla(0, 0%, 100%, 0) 50%
-  );
-  
+  );  
   position: absolute;
   top:2px;
   left:2px;
   right:2px;
 }
-.kotak-glossy-gbr {
-  	
+.kotak-glossy-gbr {  	
   position:relative;
   width: 100px;
   height: 100px;
   opacity: 0.9;
   border: 2px solid grey;
   border-radius: 10px;
-	-webkit-box-shadow: 0px 1px 2px #4d4d4d;
-  
+	-webkit-box-shadow: 0px 1px 2px #4d4d4d;  
 }
 .resta-table3a {
 	font: normal 13px Arial, sans-serif;
