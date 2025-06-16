@@ -34,6 +34,11 @@
 .font-gtw-med {font-family: 'GtwalsheimMed';}
 .bold-text {color:black;font-weight: bold;}
 /* MAIN ELEMENTS */
+.content{
+  display:none;
+  color:#2f363d;
+  margin-top:10px;
+}
 .row-top {
   margin-top:10px; 
   width:100%;
@@ -75,7 +80,7 @@
   padding:3px;
   background:#2b2b2b;
   border-radius:5px;  
-	-moz-border-radius:5px;
+	 -moz-border-radius:5px;
 	 -webkit-border-radius:5px;
 }
 .hr-bg-start, .hr-bg-end {
@@ -164,7 +169,7 @@
 	width: 100%;	
 }
 .ca-menu li{
-	background: linear-gradient(#C0C0C0 , #dbdbdb);
+	background: linear-gradient(#C0C0C0, #dbdbdb);
 	position:relative;
 	z-index:1;			
 	width: 100%;

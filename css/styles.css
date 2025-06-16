@@ -414,7 +414,11 @@
 @font-face {
   font-family: 'sli';
   src: url('../font/Simple-Line-Icons.eot?v=2.2.2');
-  src: url('../font/Simple-Line-Icons.eot?v=2.2.2#iefix') format('embedded-opentype'), url('../font/Simple-Line-Icons.ttf?v=2.2.2') format('truetype'), url('../font/Simple-Line-Icons.woff2?v=2.2.2') format('woff2'), url('../font/Simple-Line-Icons.woff?v=2.2.2') format('woff'), url('../font/Simple-Line-Icons.svg?v=2.2.2#simple-line-icons') format('svg');
+  src: url('../font/Simple-Line-Icons.eot?v=2.2.2#iefix') format('embedded-opentype'), 
+       url('../font/Simple-Line-Icons.ttf?v=2.2.2') format('truetype'), 
+       url('../font/Simple-Line-Icons.woff2?v=2.2.2') format('woff2'), 
+       url('../font/Simple-Line-Icons.woff?v=2.2.2') format('woff'), 
+       url('../font/Simple-Line-Icons.svg?v=2.2.2#simple-line-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -801,7 +805,6 @@
 .icon-sli-social-stumbleupon:before { content: "\e614"; }
 .icon-sli-social-youtube:before { content: "\e008"; }
 .icon-sli-social-dropbox:before { content: "\e00c"; }
-
 
 /*
  * Modified from Responsee CSS - v4 [https://www.myresponsee.com]
@@ -1289,17 +1292,16 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
     max-width:100%;
     text-align:right;
     vertical-align:middle;
-	margin-bottom:1.5px;
+	  margin-bottom:1.5px;
   }
   .nav-text:after {
     text-align:right;
     content:"\f008";
     font-family:"mfg";
     font-size:1.2rem;
-    margin-left:0.5rem;
-    
+    margin-left:0.5rem    
   }
-
+  
   .l-offset-1,.l-offset-2,.l-offset-five,.l-offset-3,.l-offset-4,.l-offset-5,.l-offset-6,.l-offset-7,.l-offset-8,.l-offset-9,.l-offset-10,.l-offset-11,.l-offset-12{margin-left:0;}
   .m-offset-1 {margin-left:8.3333%;}
   .m-offset-2 {margin-left:16.6666%;}

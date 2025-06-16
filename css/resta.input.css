@@ -304,9 +304,6 @@ select:focus, textarea:focus, input:focus{ outline: none; }
 
 /**** Punya SKCK *****/
 
-
-#processing {display:none}
-
 label{
 	font-style:italic;
 }

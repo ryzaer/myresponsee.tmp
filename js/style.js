@@ -91,7 +91,7 @@ jQuery(document).ready(function(t) {
         $(this).toggleClass('active'),
         $(this).parent().find('.head h4').toggleClass('text-transform'),
         $(this).parent().find('.arrow').toggleClass('arrow-animate'),
-        $(this).parent().find('.content').slideToggle(280)
+        $(this).parent().find('.accobox').slideToggle(280)
     }),
     $('.accordion-1:last-child').click(function() {
         var __this = this;
@@ -104,5 +104,5 @@ jQuery(document).ready(function(t) {
         }
     }),
     /** Preloader */
-    $("#processing").fadeIn('slow')
+    $(".content").fadeIn('slow');
 });
