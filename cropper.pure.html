@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fullscreen Cropper</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #cropperModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: calc(100vh - 70px) !important;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /*#cropperImage {
+      max-width: 100%;
+      max-height: 70vh;
+    }*/
+
+    #cropButtons {
+      position: absolute;
+      bottom: -50px;
+    }
+
+    #cropButtons button {
+      margin: 0 10px;
+      padding: 8px 16px;
+    }
+
+    input[type="file"] {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="file" id="imageInput" accept="image/*">
+
+  <!-- Fullscreen Cropper Modal -->
+  <div id="cropperModal">
+    <img id="cropperImage" src="">
+    <div id="cropButtons">
+      <button id="cropConfirm">Crop</button>
+      <button id="cropCancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Output cropped image -->
+  <div id="result"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const cropperModal = document.getElementById('cropperModal');
+    const cropperImage = document.getElementById('cropperImage');
+    const cropConfirm = document.getElementById('cropConfirm');
+    const cropCancel = document.getElementById('cropCancel');
+    const result = document.getElementById('result');
+
+    let cropper;
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          cropperImage.src = e.target.result;
+          cropperModal.style.display = 'flex';
+
+          if (cropper) cropper.destroy();
+          cropper = new Cropper(cropperImage, {
+            viewMode: 1,
+            aspectRatio: 1, // Ubah sesuai kebutuhan
+            responsive: true,
+            autoCropArea: 1,
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    cropConfirm.addEventListener('click', () => {
+      const canvas = cropper.getCroppedCanvas({ width: 300, height: 300 });
+      const croppedImage = document.createElement('img');
+      croppedImage.src = canvas.toDataURL();
+      result.innerHTML = '';
+      result.appendChild(croppedImage);
+      cropperModal.style.display = 'none';
+      imageInput.value = '';
+    });
+
+    cropCancel.addEventListener('click', () => {
+      cropperModal.style.display = 'none';
+      if (cropper) cropper.destroy();
+      imageInput.value = '';
+    });
+  </script>
+</body>
+</html>

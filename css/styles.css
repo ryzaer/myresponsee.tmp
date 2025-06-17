@@ -1127,10 +1127,12 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
 .hide-l {display:none;}
 
 .box {
-  background: linear-gradient(#FFDAB9 , #FFF 100%);
+  /* background: linear-gradient(#FFDAB9 , #fff9f9 100%); */
+  /* background: #fff4d9; */
+  background: linear-gradient(108deg,rgba(255, 244, 217, 1) 6%, rgb(255, 225, 187) 40%, rgba(255, 247, 186, 1) 94%);
   display:block;
-  padding:5px;
   width:100%;
+  padding:17px 7px 7px 7px;
 }
 .margin-bottom {margin-bottom:1.25rem;}
 .margin-bottom2x {margin-bottom:2.5rem;}
@@ -1452,4 +1454,10 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
   float:none;
   margin:0 auto;
   display:block;
+}
+.font-16 {
+  font-size:16px;
+}
+.font-18 {
+  font-size:18px;
 }

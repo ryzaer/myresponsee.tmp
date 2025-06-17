@@ -108,6 +108,36 @@ jQuery(document).ready(function(t) {
         e.preventDefault(),
         $('html, body').animate({scrollTop: '0px'}, 200)
     }),
+    
+    /** MODAL */
+    $('.open-modal-btn').click(openModal),
+    $('.close-btn').click(closeModal),
+    /** Mencegah modal tertutup saat klik backdrop/modal*/
+    $('.modal-backdrop, .modal-box').click(function (e) {
+        e.stopPropagation()
+    }),
     /** Preloader */
-    $(".content").fadeIn('slow');
+    $(".content").fadeIn('slow')
 });
+function openModal() {
+    $('.modal-backdrop').fadeIn(200),
+    $('.modal-box').fadeIn(200).addClass('show'),
+    $('body').addClass('no-scroll');
+    var getBody = $('body');
+    if(hasVerticalScrollbar(getBody))
+        $('body').addClass('modal-margin')
+}
+function closeModal() {
+    $('.modal-box').fadeOut(200).removeClass('show'),
+    $('.modal-backdrop').fadeOut(200),
+    $('body').removeClass('no-scroll');
+    var getBody = $('body');
+    if(hasVerticalScrollbar(getBody)) 
+        $('body').removeClass('modal-margin')
+}
+function hasVerticalScrollbar(el) {
+    return $(el).prop('scrollHeight') > $(el).innerHeight();
+}
+function hasHorizontalScrollbar(el) {
+    return $(el).prop('scrollWidth') > $(el).innerWidth();
+}
