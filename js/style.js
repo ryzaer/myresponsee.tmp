@@ -123,21 +123,16 @@ function openModal() {
     $('.modal-backdrop').fadeIn(200),
     $('.modal-box').fadeIn(200).addClass('show'),
     $('body').addClass('no-scroll');
-    var getBody = $('body');
-    if(hasVerticalScrollbar(getBody))
+    if(hasVerticalScrollbar())
         $('body').addClass('modal-margin')
 }
 function closeModal() {
     $('.modal-box').fadeOut(200).removeClass('show'),
     $('.modal-backdrop').fadeOut(200),
     $('body').removeClass('no-scroll');
-    var getBody = $('body');
-    if(hasVerticalScrollbar(getBody)) 
+    if(hasVerticalScrollbar()) 
         $('body').removeClass('modal-margin')
 }
-function hasVerticalScrollbar(el) {
-    return $(el).prop('scrollHeight') > $(el).innerHeight();
-}
-function hasHorizontalScrollbar(el) {
-    return $(el).prop('scrollWidth') > $(el).innerWidth();
+function hasVerticalScrollbar() {
+  return document.body.scrollHeight > document.body.clientHeight;
 }
