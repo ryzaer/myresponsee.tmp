@@ -84,27 +84,41 @@
     							<div class="s-12 m-12 l-12">
 									<style>
 
-#autocomplete {
-    width: 300px;
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 8px; /* sudut membulat */
-  }
-
- .ui-autocomplete {
-  max-width: 315px;
-  max-height: 200px;      /* batas tinggi dropdown */
-  overflow-y: auto;       /* scroll vertikal jika melebihi batas */
-  white-space: normal;    /* wrap teks */
-  word-wrap: break-word;
-  border-radius: 8px;     /* sudut membulat */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.ui-menu-item-wrapper {
-  white-space: normal;
-  padding: 8px 12px;
-}
+.autocomplete-box {
+      position: relative;
+      width: 300px;
+    }
+    .autocomplete-input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .autocomplete-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      max-height: 180px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .autocomplete-item {
+      padding: 8px;
+      cursor: pointer;
+      white-space: normal;
+    }
+    .autocomplete-item.hover {
+      background: #e0f0ff;
+    }
+    .highlight {
+      font-weight: bold;
+      background: yellow;
+    }
 
 									</style>
 									<div class="box-history box-top margin-bottom">
@@ -112,9 +126,11 @@
 											<div class="l-12 m-12 s-12">
 												<div class="align-content-center margin-bottom">
 													<button id="btnLoad" class="btn-loading info">
-														<i class="icon icon-sheet"></i><span class="text">Cetak Register</span>
+														<i class="icon icon-sheet"></i><span class="text">Register</span>
 													</button>
-													<input type="text" id="autocomplete" placeholder="Ketik nama negara...">
+													<div class="autocomplete-box">
+														<input type="text" id="country-input" class="autocomplete-input" placeholder="Ketik negara...">
+													</div>
 												</div>
 												<table class="table resta-table3b margin-bottom">
 													<thead>
@@ -297,28 +313,24 @@
 			</div>
 		 </div>
 		</footer> 
-		<script src="js/jquery.min.js?v=1.8.3"></script>
+		<script src="js/jquery.min.js?v=1.8.2"></script>
 		<script src="js/style.js?v=1.8.2"></script>
 		
 		<script>
-			$(function () {
-      var dataNegara = [
-        "Indonesia",
-        "Malaysia kajskdj lkasjdlkja sdlkasjdlkjas dlaksjdlaksjd alskdjalskdjsa ldkjlkaj ldkjasldkjsald j",
-        "Singapura",
-        "Thailand",
-        "Vietnam",
-        "Filipina",
-        "Brunei",
-        "Laos",
-        "Kamboja",
-        "Myanmar"
-      ];
-
-      $("#autocomplete").autocomplete({
-        source: dataNegara
-      });
-    });
+			$('#country-input').simpleAutocomplete({
+				data: [
+					{ id: 1, label: "Indonesia" },
+					{ id: 2, label: "Malaysia" },
+					{ id: 3, label: "Singapura" },
+					{ id: 4, label: "Thailand" },
+					{ id: 5, label: "Brunei Darussalam" },
+					{ id: 6, label: "Vietnam" },
+					{ id: 7, label: "Filipina" },
+					{ id: 8, label: "Kamboja" },
+					{ id: 9, label: "Laos" },
+					{ id: 10, label: "Myanmar" }
+				]
+			});
 
 		</script>
 	</body>	

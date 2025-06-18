@@ -2,53 +2,26 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Autocomplete Gambar + Keyboard</title>
+  <title>Autocomplete AJAX + Image</title>
   <style>
-    .autocomplete-box {
-      position: relative;
-      width: 300px;
-    }
-    .autocomplete-input {
-      width: 100%;
-      padding: 8px;
-      font-size: 16px;
-    }
+    .autocomplete-box { position: relative; width: 300px; }
+    .autocomplete-input { width: 100%; padding: 8px; font-size: 16px; }
     .autocomplete-suggestions {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #fff;
-      max-height: 180px;
-      overflow-y: auto;
-      z-index: 1000;
-      display: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: absolute; top: 100%; left: 0; right: 0;
+      border: 1px solid #ccc; border-radius: 8px;
+      background: #fff; max-height: 180px; overflow-y: auto;
+      z-index: 1000; display: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .autocomplete-item {
-      padding: 8px;
-      cursor: pointer;
-      white-space: normal;
-      display: flex;
-      align-items: center;
+      padding: 8px; cursor: pointer; white-space: normal;
+      display: flex; align-items: center;
     }
     .autocomplete-item img {
-      width: 20px;
-      margin-right: 8px;
-      vertical-align: middle;
+      width: 20px; margin-right: 8px; vertical-align: middle;
     }
-    .autocomplete-item.hover {
-      background: #e0f0ff;
-    }
-    .highlight {
-      font-weight: bold;
-      background: yellow;
-    }
-    #flag {
-      margin-top: 10px;
-    }
+    .autocomplete-item.hover { background: #e0f0ff; }
+    .highlight { font-weight: bold; background: yellow; }
+    #flag { margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -61,15 +34,14 @@
 <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 (function($){
-  $.fn.simpleAutocomplete = function(options){
+  $.fn.simpleAutocompleteAjax = function(options){
     var settings = $.extend({
-      data: [],
-      targetImg: null
+      url: '',        // URL yang menerima ?term=
+      targetImg: null // Target selector
     }, options);
     var $input = $(this);
     var $box = $('<div class="autocomplete-suggestions"></div>').insertAfter($input);
     var selectedIndex = -1;
-    var lastTerm = '';
 
     function escapeHtml(text) {
       return $('<div/>').text(text).html();
@@ -80,21 +52,13 @@
       return escapeHtml(text).replace(regex, '<span class="highlight">$1</span>');
     }
 
-    function filter(term) {
-      return $.grep(settings.data, function(item){
-        return item.label.toLowerCase().indexOf(term.toLowerCase()) !== -1;
-      });
-    }
-
-    function render(term) {
-      lastTerm = term;
-      var items = filter(term);
+    function render(data, term) {
       $box.empty().hide();
       selectedIndex = -1;
 
-      if (!term || items.length === 0) return;
+      if (!data || !data.length) return;
 
-      $.each(items, function(i, item){
+      $.each(data, function(i, item){
         var img = item.img ? '<img src="'+item.img+'">' : '';
         var html = img + '<span>' + highlight(item.label, term) + '</span>';
         $('<div class="autocomplete-item"></div>')
@@ -119,7 +83,6 @@
       $items.removeClass('hover');
       var $hoverItem = $items.eq(selectedIndex).addClass('hover');
 
-      // Scroll into view
       var boxTop = $box.scrollTop();
       var boxHeight = $box.height();
       var itemTop = $hoverItem.position().top;
@@ -151,24 +114,32 @@
     $input.on('keydown', function(e){
       var code = e.which;
       var $items = $box.children('.autocomplete-item');
-      if (code === 38) { // ↑
-        moveHover(-1); e.preventDefault();
-      } else if (code === 40) { // ↓
-        moveHover(1); e.preventDefault();
-      } else if (code === 13) { // Enter
+      if (code === 38) { moveHover(-1); e.preventDefault(); }
+      else if (code === 40) { moveHover(1); e.preventDefault(); }
+      else if (code === 13) {
         if (selectedIndex > -1) selectItem($items.eq(selectedIndex));
         e.preventDefault();
-      } else if (code === 27) { // Esc
-        $box.hide();
-      } else if (code === 9) { // Tab
+      } else if (code === 27 || code === 9) {
         $box.hide();
       }
     });
 
+    var lastTerm = '';
+    var timer;
     $input.on('keyup', function(e){
       var ignore = [13, 38, 40, 27, 9];
       if ($.inArray(e.which, ignore) !== -1) return;
-      render($input.val());
+
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        var term = $input.val();
+        if (!term || term === lastTerm) return;
+        lastTerm = term;
+
+        $.getJSON(settings.url, { term: term }, function(data){
+          render(data, term);
+        });
+      }, 200);
     });
 
     $box.on('click', '.autocomplete-item', function(){
@@ -176,9 +147,7 @@
     });
 
     $input.on('blur', function(){
-      setTimeout(function(){
-        $box.hide();
-      }, 200);
+      setTimeout(function(){ $box.hide(); }, 200);
     });
 
     $(document).on('click', function(e){
@@ -191,20 +160,11 @@
 </script>
 
 <script>
-  var countries = [
-    { id: 1, label: "Indonesia", img: "https://flagcdn.com/w40/id.png" },
-    { id: 2, label: "Malaysia", img: "https://flagcdn.com/w40/my.png" },
-    { id: 3, label: "Thailand", img: "https://flagcdn.com/w40/th.png" },
-    { id: 4, label: "Singapura", img: "https://flagcdn.com/w40/sg.png" },
-    { id: 5, label: "Brunei", img: "https://flagcdn.com/w40/bn.png" },
-    { id: 6, label: "Vietnam", img: "https://flagcdn.com/w40/vn.png" },
-    { id: 7, label: "Filipina", img: "https://flagcdn.com/w40/ph.png" }
-  ];
-
-  $('#country-input').simpleAutocomplete({
-    data: countries,
-    targetImg: '#flag'
-  });
+// CONTOH PEMAKAIAN
+$('#country-input').simpleAutocompleteAjax({
+  url: 'negara.php', // Ganti dengan endpoint kamu
+  targetImg: '#flag'
+});
 </script>
 
 </body>
