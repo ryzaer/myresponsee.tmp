@@ -857,18 +857,11 @@ li,dl,blockquote,table,kbd {
 b,strong {font-weight:700;}
 .text-center {text-align:center!important;}
 .text-right {text-align:right!important;}
-img {
-  height:auto;
-  max-width:100%;
-  width:auto;
-  margin-bottom: -4px;
-
-}
+img { max-width:100% }
 .owl-item img, .full-img {
   max-width: none;
   width:100%;
-}  
-
+}
 .size-960 .line,.size-1140 .line,.size-1280 .line {
   margin:0 auto;
   padding:0 0.625rem;
@@ -918,6 +911,12 @@ table {
 .size-1140 .line {max-width:71.25rem;}
 .size-1280 .line {max-width:80rem;}
 .size-960.align-content-left .line,.size-1140.align-content-left .line,.size-1280.align-content-left .line {margin-left:0;}
+.align-content-center {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 form {line-height:1.4;}
 nav {
   display:block;

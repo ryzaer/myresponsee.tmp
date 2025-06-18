@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Autocomplete Manual jQuery 1.8.3</title>
+  <style>
+    #autocomplete-box {
+      position: relative;
+      width: 300px;
+    }
+
+    #autocomplete {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 9999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .suggestion-item {
+      padding: 8px 12px;
+      cursor: pointer;
+      white-space: normal;
+    }
+
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Manual Autocomplete (jQuery 1.8.3 Compatible)</h2>
+  <div id="autocomplete-box">
+    <input type="text" id="autocomplete" placeholder="Ketik nama negara...">
+    <div class="suggestions" id="suggestion-list" style="display:none;"></div>
+  </div>
+
+  <!-- jQuery 1.8.3 -->
+  <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+  <script>
+    $(function () {
+      var negaraList = [
+        "Indonesia",
+        "Malaysia",
+        "Singapura",
+        "Negara dengan nama sangat panjang yang dibungkus ke baris baru",
+        "Thailand",
+        "Vietnam",
+        "Filipina",
+        "Brunei Darussalam",
+        "Kamboja",
+        "Laos",
+        "Myanmar"
+      ];
+
+      $('#autocomplete').on('keyup', function () {
+        var keyword = $(this).val().toLowerCase();
+        var $list = $('#suggestion-list');
+        $list.empty();
+
+        if (keyword.length === 0) {
+          $list.hide();
+          return;
+        }
+
+        var matched = $.grep(negaraList, function (item) {
+          return item.toLowerCase().indexOf(keyword) !== -1;
+        });
+
+        if (matched.length > 0) {
+          $.each(matched, function (i, item) {
+            $list.append('<div class="suggestion-item">' + item + '</div>');
+          });
+          $list.show();
+        } else {
+          $list.hide();
+        }
+      });
+
+      // Klik item suggestion
+      $('#suggestion-list').on('click', '.suggestion-item', function () {
+        $('#autocomplete').val($(this).text());
+        $('#suggestion-list').hide();
+      });
+
+      // Sembunyikan saat klik luar
+      $(document).on('click', function (e) {
+        if (!$(e.target).closest('#autocomplete-box').length) {
+          $('#suggestion-list').hide();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
