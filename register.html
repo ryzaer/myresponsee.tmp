@@ -261,15 +261,11 @@
 			$('.btn-loading').on('click', function () {
 				const $btn = $(this);
 				const $icon = $btn.find('.icon');
-
 				if ($btn.hasClass('loading')) return;
-
 				const originalIcon = $btn.data('icon') || 'icon-check';
-
 				// Aktifkan loading
 				$btn.addClass('loading').prop('disabled', true);
 				$icon.removeClass(originalIcon).addClass('icon-spinner_2');
-
 				// Simulasi proses
 				setTimeout(function () {
 				$btn.removeClass('loading').prop('disabled', false);

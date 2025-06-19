@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Button with Spinner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .btn-ajax {
+      position: relative;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background: #3498db;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s;
+      margin: 5px;
+    }
+
+    .btn-ajax .fa-spinner {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Demo AJAX Button Plugin</h2>
+
+  <!-- Tombol 1 -->
+  <button class="btn-ajax"
+          data-icon="check"
+          data-url="https://jsonplaceholder.typicode.com/posts"
+          data-method="POST"
+          data-alert="Tombol 1: Data berhasil dikirim!">
+    <i class="icon fa-solid fa-check"></i>
+    <span class="text">Kirim Data</span>
+  </button>
+
+  <!-- Tombol 2 -->
+  <button class="btn-ajax"
+          data-icon="thumbs-up"
+          data-url="https://jsonplaceholder.typicode.com/posts"
+          data-method="POST"
+          data-alert="Tombol 2: Like terkirim!">
+    <i class="icon fa-solid fa-thumbs-up"></i>
+    <span class="text">Like</span>
+  </button>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Plugin ajaxButton -->
+  <script>
+    (function($) {
+      $.fn.ajaxButton = function(options) {
+        this.each(function() {
+          const $btn = $(this);
+          const $icon = $btn.find('.icon');
+
+          const originalIcon = $btn.data('icon') || 'check';
+          const url = $btn.data('url') || options.url || '#';
+          const method = $btn.data('method') || options.method || 'GET';
+          const alertText = $btn.data('alert') || options.alert || 'Berhasil!';
+          const payload = options.payload || { example: "data" };
+
+          $btn.on('click', function() {
+            if ($btn.hasClass('loading')) return;
+
+            $btn.addClass('loading').prop('disabled', true);
+            $icon.removeClass(`fa-${originalIcon}`).addClass('fa-spinner');
+
+            $.ajax({
+              url: url,
+              method: method,
+              data: payload,
+              success: function(response) {
+                alert(alertText);
+                if (typeof options.onSuccess === 'function') {
+                  options.onSuccess(response, $btn);
+                }
+              },
+              error: function(err) {
+                alert("Terjadi kesalahan.");
+                if (typeof options.onError === 'function') {
+                  options.onError(err, $btn);
+                }
+              },
+              complete: function() {
+                $btn.removeClass('loading').prop('disabled', false);
+                $icon.removeClass('fa-spinner').addClass(`fa-${originalIcon}`);
+              }
+            });
+          });
+        });
+        return this;
+      };
+    })(jQuery);
+
+    // Inisialisasi plugin
+    $('.btn-ajax').ajaxButton({
+      payload: { userId: 1, message: 'Hello' },
+      onSuccess: function(res, btn) {
+        console.log("Sukses dari tombol:", btn.text(), res);
+      },
+      onError: function(err, btn) {
+        console.error("Gagal dari tombol:", btn.text(), err);
+      }
+    });
+  </script>
+</body>
+</html>
