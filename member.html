@@ -32,9 +32,9 @@
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.theme.css?id=ff8bcb1"> 
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.transitions.css?id=4be88d0">
 		
-		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9ca3">
+		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9ca">
 		<link rel="stylesheet" type="text/css" href="css/resta.input.css?id=7fdbfbj">
-		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122e">	
+		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122f">	
 		<style>
 			.progka {
 				width:100%;
@@ -98,46 +98,25 @@
 								<div class="margin">
 									<div class="s-12 m-12 l-12">
 										<style>
-	.autocomplete-box {
-		position: relative;
-		padding-top: 9px;
-		width: 300px;
-	}
-	.autocomplete-input {
-		width: 100%;
-		height: 28px;
-		padding: 8px;
-		font-size: 16px;
-		border-radius: 9px;
-		color: #191919;
-	}
-	.autocomplete-suggestions {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		border: 1px solid #ccc;
-		border-radius: 8px;
-		background: #fff;
-		max-height: 180px;
-		overflow-y: auto;
-		z-index: 1000;
-		display: none;
-		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-		color: #191919;
-	}
-	.autocomplete-item {
-		padding: 8px;
-		cursor: pointer;
-		white-space: normal;
-	}
-	.autocomplete-item.hover {
-		background: #e0f0ff;
-	}
-	.highlight {
-		font-weight: bold;
-		background: rgb(234, 197, 155);
-	}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* opsional: agar scroll muncul saat layar kecil */
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  white-space: nowrap; /* mencegah pemotongan teks */
+}
 
 										</style>
 										<div class="box-history box-top margin-bottom">
@@ -244,9 +223,26 @@
 				<div class="modal-backdrop"></div>
 				<div class="modal-box latar-bata">
 					<button class="close-btn">&times;</button>
-					<div class="modal-content">
-					<h2>Modal Title</h2>
-					<p>Ini adalah modal dengan tombol tutup di kanan atas dan efek blur.</p>
+					<div class="modal-content text-center">
+						<img src="image/wewenang.webp" style="width:70px;display: block; margin: 0 auto;" alt="Gambar">
+						<div style="text-align: left;margin-top:10px" class="subfrm4">
+							<label>Nomor KTP*</label>
+							<span class=signup-error id=nik-error></span>
+							<div>
+							<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+							</div>
+						</div>
+						<div style="text-align: left;margin-bottom:10px" class="subfrm4">
+							<label>Nomor KTP*</label>
+							<span class=signup-error id=nik-error></span>
+							<div>
+							<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+							</div>
+						</div>
+						<button id="btnLoad" class="btn-loading rounded3x" data-icon="icon-users">
+							<i class="icon icon-users"></i>
+							<span class="text">Login</span>
+						</button>
 					</div>
 				</div>
 			</main>
@@ -295,23 +291,25 @@
 				</div>
 			</div>
 			</footer> 
-			<script src="js/jquery.min.js?v=1.8.4"></script>
-			<script src="js/style.js?v=1.8.2"></script>
-			
+			<script src="js/jquery.min.js?v=1.8.3"></script>
+			<script src="js/jquery.plugin.js?v=1.8.3"></script>
+			<script src="js/style.js?v=1.8.3"></script>
 			<script>
 				$(document).ready(function() {
+					// contoh penggunaan autocomplete
 					$.getJSON("source/negara.json", function(data) {
 						!data || $('#country-input').simpleAutocomplete({
 							data: data
 						})
 					}),
+					// contoh penggunaan simple table pagination
 					$.getJSON("source/biodata.json", function(data) {
 						!data || $("#myTable").simplePaginate({
 							data: data,
 							rowsPerPage: 5,
 							columns: ["no", "nama", "alamat"]
 						})
-					})
+					});
 				})
 			</script>
 		</div>

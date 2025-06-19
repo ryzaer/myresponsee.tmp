@@ -54,7 +54,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 /* MAIN ELEMENTS */
 .content{
-  display:none;
   color:#2f363d;
   margin-top:10px;
 }

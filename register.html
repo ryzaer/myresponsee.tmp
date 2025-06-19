@@ -32,7 +32,7 @@
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.theme.css?id=ff8bcb2"> 
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.transitions.css?id=4be88d2">
 		
-		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9ca3">
+		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9ca7">
 		<link rel="stylesheet" type="text/css" href="css/resta.input.css?id=7fdbfbi">
 		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122v">	
 		<style>
@@ -199,11 +199,24 @@
 			</div>
 			<!-- Element Modal -->
 			<div class="modal-backdrop"></div>
-			<div class="modal-box">
+			<div class="modal-box latar-bata">
 				<button class="close-btn">&times;</button>
-				<div class="modal-content">
-					<h2>Modal Title</h2>
-					<p>Ini adalah modal dengan tombol tutup di kanan atas dan efek blur.</p>
+				<div class="modal-content text-center">
+					<img src="image/wewenang.webp" style="width:70px;display: block; margin: 0 auto;" alt="Gambar">
+					<div style="text-align: left;margin-top:10px" class="subfrm4">
+						<label>Nomor KTP*</label>
+						<span class=signup-error id=nik-error></span>
+						<div>
+						<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+						</div>
+					</div>
+					<div style="text-align: left;margin-bottom:10px" class="subfrm4">
+						<label>Nomor KTP*</label>
+						<span class=signup-error id=nik-error></span>
+						<div>
+						<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+						</div>
+					</div>
 					<button id="btnLoad" class="btn-loading rounded3x" data-icon="icon-users">
 						<i class="icon icon-users"></i>
 						<span class="text">Login</span>
@@ -257,6 +270,7 @@
 		 </div>
 		</footer> 
 		<script src="js/jquery.min.js?v=1.8.3"></script>
+		<script src="js/jquery.plugin.js?v=1.8.3"></script>
 		<script src="js/style.js?v=1.8.2"></script>
 		<script>
 			$('.btn-loading').on('click', function () {

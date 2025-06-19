@@ -115,9 +115,7 @@ jQuery(document).ready(function(t) {
     /** Mencegah modal tertutup saat klik backdrop/modal*/
     $('.modal-backdrop, .modal-box').click(function (e) {
         e.stopPropagation()
-    }),
-    /** Preloader */
-    $(".content").fadeIn('slow')
+    })
 });
 function openModal() {
     $('.modal-backdrop').fadeIn(200),
