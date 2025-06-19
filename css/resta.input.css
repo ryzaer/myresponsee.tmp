@@ -409,6 +409,13 @@ label{
 .box-editor .margin {
  padding-top:10px
 }
+.box-editor .editor-info{
+	border-radius:4px;
+	color:white;
+	padding:5px 25px;
+	background-color: #65a9d7;
+	margin-bottom:10px
+}
 .box-history {
   background:none repeat scroll 0 0 #fcffae;
   display:block;

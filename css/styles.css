@@ -817,6 +817,11 @@
   margin:0;	
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background:none repeat scroll 0 0 #fff;  
   font-family:"Gtwalsheim",Arial,sans-serif;
@@ -824,6 +829,19 @@ body {
   color:#000;
 }
 
+body .wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 10px);
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  width: 100%;
+}
 
 p,h1,h2,h3,h4,h5,h6 {
   color:black;
