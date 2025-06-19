@@ -71,39 +71,34 @@
           const url = $btn.data('url') || options.url || '#';
           const method = $btn.data('method') || options.method || 'GET';
           const alertText = $btn.data('alert') || options.alert || 'Berhasil!';
-          const payload = options.payload || { example: "data" };
 
           $btn.on('click', function() {
             if ($btn.hasClass('loading')) return;
-
             $btn.addClass('loading').prop('disabled', true);
             $icon.removeClass(`fa-${originalIcon}`).addClass('fa-spinner');
-
             $.ajax({
               url: url,
               method: method,
-              data: payload,
+              data: options.payload || { example: "data" },
               success: function(response) {
                 alert(alertText);
-                if (typeof options.onSuccess === 'function') {
-                  options.onSuccess(response, $btn);
-                }
+                if (typeof options.onSuccess === 'function') 
+                  options.onSuccess(response, $btn)                
               },
               error: function(err) {
                 alert("Terjadi kesalahan.");
-                if (typeof options.onError === 'function') {
-                  options.onError(err, $btn);
-                }
+                if (typeof options.onError === 'function') 
+                  options.onError(err, $btn)
               },
               complete: function() {
                 $btn.removeClass('loading').prop('disabled', false);
                 $icon.removeClass('fa-spinner').addClass(`fa-${originalIcon}`);
               }
-            });
-          });
+            })
+          })
         });
-        return this;
-      };
+        return this
+      }
     })(jQuery);
 
     // Inisialisasi plugin
