@@ -635,20 +635,6 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
     border-bottom-right-radius: 9px;
 }
 
-.table thead tr:nth-child(2) th {
-	border-left: 0;
-	border-top: 0;
-}
-.table thead + tbody tr td,
-.table tbody + tbody tr td,
-.table tr + tr td {
-    border-top: 0;
-}
-.table tr th + th,
-.table tr td + td {
-    border-left: 0;	
-}
-
 .table.table-secondary th,
 .table.table-secondary td {
 	border-bottom: 2px solid #3f3f3f;	
