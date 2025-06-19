@@ -101,7 +101,7 @@ marquee {
 }
 .runtext-container {
 	background-color:#2b2b2b;
-	border-radius:7px;
+	border-radius:8px;
 	padding-left:5px;
 	padding-right:5px;
 }
@@ -269,7 +269,7 @@ body.modal-margin {
 	height: 28px;
 	padding: 8px;
 	font-size: 16px;
-	border-radius: 9px;
+	border-radius: 8px;
 	color: #191919;
 }
 .autocomplete-suggestions {

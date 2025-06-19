@@ -27,7 +27,7 @@ input[type="radio"].star:checked ~ label.star:before {
 
 input[type="radio"].star-4:checked ~ label.star:before {
   color:#009900;
-	animation: glow 1s infinite alternate;	
+  animation: glow 1s infinite alternate;	
 }
 
 @keyframes glow {
@@ -57,9 +57,6 @@ label.star:before{
   font-family: 'mfg';
 }
 
-
-
-
 input[type=date] {
     position: relative;
 }
@@ -81,7 +78,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
     opacity: 1;
 	color:#2f363d;
 }
-
 select,input,textarea{
 	border: #5b5b5b 1px solid;
 	border-radius: 4px;		
@@ -336,11 +332,11 @@ label{
 #hideGelar1, #hideGelar2 {display:none;}
 
 /** New Loading Button */
-.btn-loading {
+.btn {
   position: relative;
   padding: 4px 10px;
   margin:3px;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -351,45 +347,47 @@ label{
   transition: background 0.3s;
   color:#2f363d; 
   border: #2f363d 1px solid;
+  border-radius: 4px;
 }
-.btn-loading:hover {
+.btn.rounded1x {
+	border-radius: 8px;
+}
+.btn.rounded2x {
+	border-radius: 16px;
+}
+.btn:hover {
   color: #535353;
   border:#535353 1px solid;
 }
-.btn-loading.rounded1x {
-	border-radius: 3px;
-}
-.btn-loading.rounded2x {
-	border-radius: 9px;
-}
-.btn-loading.rounded3x {
-	border-radius: 20px;
-}
-.btn-loading.info {
+.btn.btn-info {
   color: #1d5ade;
   border:#1d5ade 1px solid;
 }
-.btn-loading.info:hover {
+.btn.btn-info:hover {
   color: #3b5998;
   border:#3b5998 1px solid;
 }
-.btn-loading.success {
+.btn.btn-success {
   color: #007200;
   border:#007200 1px solid;
 }
-.btn-loading.success:hover {
+.btn.btn-success:hover {
   color: #488c48;
   border:#488c48 1px solid;
 }
-.btn-loading.danger {
+.btn.btn-linear.btn-success {
+  background-color: #b9e4b9;
+  background-image: linear-gradient(to bottom, #b9e4b9, #b0e7d0, #b2e9e3, #bfe8ef, #d0e7f2, #d0e7f2, #d0e7f2, #d0e7f2, #bfe8ef, #b2e9e3, #b0e7d0, #b9e4b9);
+}
+.btn.btn-danger {
   color: #cc0000;
   border:#cc0000 1px solid;
 }
-.btn-loading.danger:hover {
+.btn.btn-danger:hover {
   color: #da4141;
   border:#da4141 1px solid;
 }
-.btn-loading .icon-spinner_2 {
+.btn .icon-spinner_2 {
   animation: spin 1s linear infinite;
 }
 
