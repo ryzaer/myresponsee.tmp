@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Paginasi Plugin</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    .pagination { display: flex; gap: 5px; }
+    .pagination button { padding: 5px 10px; }
+    .pagination button.active { background: #333; color: #fff; }
+  </style>
+</head>
+<body>
+
+<h3>Contoh Tabel Paginasi</h3>
+<table id="myTable">
+  <thead>
+    <tr><th>ID</th><th>Nama</th><th>Alamat</th></tr>
+  </thead>
+</table>
+<script>
+  (function($) {
+  $.fn.simplePaginate = function(options) {
+    const settings = $.extend({
+      data: [],
+      rowsPerPage: 5,
+      columns: [],
+    }, options);
+
+    const table = this;
+    const container = $('<div class="pagination"></div>').insertAfter(table);
+    let currentPage = 1;
+
+    function renderTable(page) {
+      const start = (page - 1) * settings.rowsPerPage;
+      const end = start + settings.rowsPerPage;
+      const rows = settings.data.slice(start, end);
+
+      let tbody = table.find("tbody");
+      if (tbody.length === 0) {
+        tbody = $("<tbody></tbody>").appendTo(table);
+      }
+      tbody.empty();
+
+      rows.forEach(row => {
+        const tr = $("<tr></tr>");
+        settings.columns.forEach(col => {
+          tr.append(`<td>${row[col]}</td>`);
+        });
+        tbody.append(tr);
+      });
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(settings.data.length / settings.rowsPerPage);
+      container.empty();
+
+      if (settings.data.length <= settings.rowsPerPage) {
+        container.hide();
+        return;
+      } else {
+        container.show();
+      }
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = $(`<button data-page="${i}">${i}</button>`);
+        if (i === currentPage) btn.addClass("active");
+        container.append(btn);
+      }
+    }
+
+    container.on("click", "button", function() {
+      currentPage = parseInt($(this).attr("data-page"));
+      renderTable(currentPage);
+      renderPagination();
+    });
+
+    renderTable(currentPage);
+    renderPagination();
+
+    return this;
+  };
+})(jQuery);
+
+</script>
+<script>
+  // Data JSON
+  const data = [
+    { id: 1, nama: "Andi", alamat: "Jakarta" },
+    { id: 2, nama: "Budi", alamat: "Bandung" },
+    { id: 3, nama: "Citra", alamat: "Surabaya" },
+    { id: 4, nama: "Dedi", alamat: "Medan" },
+    { id: 5, nama: "Eka", alamat: "Yogyakarta" },
+    { id: 6, nama: "Fajar", alamat: "Semarang" },
+    { id: 7, nama: "Gina", alamat: "Makassar" }
+  ];
+</script>
+
+<!-- Plugin Code Here or include from .js file -->
+<script>
+  // Paste plugin code here (or include from a separate file)
+
+  $(document).ready(function() {
+    $("#myTable").simplePaginate({
+      data: data,
+      rowsPerPage: 5,
+      columns: ["id", "nama", "alamat"]
+    });
+  });
+</script>
+
+</body>
+</html>

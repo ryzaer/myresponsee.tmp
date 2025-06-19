@@ -1,0 +1,14 @@
+[
+    { "no": 1, "nama": "Andi", "alamat": "Jakarta" },
+    { "no": 2, "nama": "Budi", "alamat": "Bandung" },
+    { "no": 3, "nama": "Citra", "alamat": "Surabaya" },
+    { "no": 4, "nama": "Dedi", "alamat": "Medan" },
+    { "no": 5, "nama": "Eka", "alamat": "Yogyakarta" },
+    { "no": 6, "nama": "Fajar", "alamat": "Semarang" },
+    { "no": 7, "nama": "Gina", "alamat": "Makassar" },
+    { "no": 8, "nama": "Hadi", "alamat": "Balikpapan" },
+    { "no": 9, "nama": "Ika", "alamat": "Denpasar" },
+    { "no": 10, "nama": "Joko", "alamat": "Palembang" },
+    { "no": 11, "nama": "Kiki", "alamat": "Pontianak" },
+    { "no": 12, "nama": "Lina", "alamat": "Manado" }
+]

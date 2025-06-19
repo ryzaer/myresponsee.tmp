@@ -342,7 +342,6 @@ label{
   margin:3px;
   font-size: 16px;
   border: none;
-  border-radius: 20px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -352,39 +351,43 @@ label{
   color:#2f363d; 
   border: #2f363d 1px solid;
 }
-.btn-loading i {
-  color: #2f363d ;
+.btn-loading:hover {
+  color: #535353;
+  border:#535353 1px solid;
 }
-
+.btn-loading.rounded1x {
+	border-radius: 3px;
+}
+.btn-loading.rounded2x {
+	border-radius: 9px;
+}
+.btn-loading.rounded3x {
+	border-radius: 20px;
+}
 .btn-loading.info {
+  color: #1d5ade;
+  border:#1d5ade 1px solid;
+}
+.btn-loading.info:hover {
   color: #3b5998;
   border:#3b5998 1px solid;
-}
-.btn-loading.info i {
-  color: #3b5998;
 }
 .btn-loading.success {
   color: #007200;
   border:#007200 1px solid;
 }
-.btn-loading.success i {
-  color: #007200;
+.btn-loading.success:hover {
+  color: #488c48;
+  border:#488c48 1px solid;
 }
 .btn-loading.danger {
   color: #cc0000;
   border:#cc0000 1px solid;
 }
-.btn-loading.danger i {
-  color: #cc0000;
+.btn-loading.danger:hover {
+  color: #da4141;
+  border:#da4141 1px solid;
 }
-.btn-loading:hover {
-  color: #e59400;
-  border:#e59400 1px solid;
-}
-.btn-loading:hover i {
-  color: #e59400;
-}
-
 .btn-loading .icon-spinner_2 {
   animation: spin 1s linear infinite;
 }

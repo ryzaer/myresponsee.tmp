@@ -1064,3 +1064,6 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
 .latar-bata {
   background-image: url('../image/white_brick_wall.webp');
 }
+.latar-fixed {
+  background-attachment: fixed;
+}
