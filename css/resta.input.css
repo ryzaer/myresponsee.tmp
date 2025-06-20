@@ -432,17 +432,17 @@ label{
  padding-top:10px
 }
 .input-cari {
-	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB50lEQVRIS7WVyytFURSHXcw9izFT+Qs8IhMpJphQ3m83xVguY1JeeVOXAVGMzDwnBiYyN1VeJRnJ4/vdzqnrnLvPuXLs+jr73r3X+a291trrhFL+eYQM78/k/w6ogyLIgBe4gUNYs377updIoAWracjysH5mbQi2/BScAhMYjFpGxzwX4AKeIAfKYBDKrT0RnuNeIvEC8nwTPqAH1uErgbFsumEe0qAZtk0itoBifmuFpZOnYuw35MQiKFwFoBy5hi0wwsokKCxVBs+dxrI9BYVtGJQ3o8A5K6VQD/t+rsetNzDftYQqvAR0TFVNHtz/QiCfvXcgexWB8QRKbCqkg+bJDu1/t2w0Nwr8+wnOkFayFNO9ZN1nXyPswAlUep1AVTAFElKyEtW/015VpOIoAd3qGS8B9Rrdg2zohaUkTtHPHl22ByiEVy8BrelGRkFJHoBlw0nkeR/MggrjCGpMp3b2ojE2RixPdPw5UC96hFxQnsKgsMQPtRV1AFdoE3XTJjYqngqXaSgsV1Adt0HtpcspYvoeKCftUAvFYH8PrpkfwAa8wSq0eYmYBDyc/7Eke4nIGXvot7ptLFx/FbDfscJEX0CXSBACJhEVSDgoAVtEpa1q+oRWiAYpYIuoAi8h9pULWsBVHN8xj2QZFgadiwAAAABJRU5ErkJggg==) no-repeat 3px 3px #FFF;
+	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktc2VhcmNoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik0xMS43NDIgMTAuMzQ0YTYuNSA2LjUgMCAxIDAtMS4zOTcgMS4zOThoLS4wMDFxLjA0NC4wNi4wOTguMTE1bDMuODUgMy44NWExIDEgMCAwIDAgMS40MTUtMS40MTRsLTMuODUtMy44NWExIDEgMCAwIDAtLjExNS0uMXpNMTIgNi41YTUuNSA1LjUgMCAxIDEtMTEgMCA1LjUgNS41IDAgMCAxIDExIDAiLz4KPC9zdmc+) no-repeat 5px 5px #FFF;
 	border: 1px solid #848484; 
 	outline:0; 
-	height:28px; 
+	height:26px; 
 	width: 200px; 
 	font-size: medium;
 	padding-left:27px; 
 	padding-right:10px;
 	margin: 3px; 
-	border-radius: 20px; 
-	-webkit-border-radius: 20px; 
-	-moz-border-radius: 20px; 
+	border-radius: 16px; 
+	-webkit-border-radius: 16px; 
+	-moz-border-radius: 16px; 
 
 } 
