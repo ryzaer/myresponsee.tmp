@@ -387,10 +387,17 @@ label{
   color: #da4141;
   border:#da4141 1px solid;
 }
-.btn .icon-spinner_2 {
+.btn.btn-warning {
+  color: #e59400;
+  border:#e59400 1px solid;
+}
+.btn.btn-warning:hover {
+  color: #ffbd4c;
+  border:#ffbd4c 1px solid;
+}
+.btn.btn-ajax .icon-spinner_2 {
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
   to {
     transform: rotate(360deg);

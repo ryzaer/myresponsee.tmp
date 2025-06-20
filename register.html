@@ -33,7 +33,7 @@
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.transitions.css?id=4be88d2">
 		
 		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9ca9">
-		<link rel="stylesheet" type="text/css" href="css/resta.input.css?id=7fdbfbo">
+		<link rel="stylesheet" type="text/css" href="css/resta.input.css?id=7fdbfbi">
 		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122y">	
 		<style>
 			.progka {
@@ -187,7 +187,14 @@
 									</div>
 									</div>
 									<div class=align-content-center>
-										<button id="btnLoad" class="btn btn-loading btn-success" data-icon="icon-check">
+										<!-- <button id="btnLoad" class="btn btn-ajax btn-success" data-icon="icon-check">
+											<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
+										</button> -->
+										<button id="btnLoad" class="btn btn-success"
+												data-icon="check"
+												data-url="https://jsonplaceholder.typicode.com/posts"
+												data-method="POST"
+												data-alert="Tombol: Verifikasi terkirim!">
 											<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
 										</button>
 									</div>
@@ -217,9 +224,12 @@
 						<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
 						</div>
 					</div>
-					<button id="btnLoad" class="btn btn-loading rounded3x" data-icon="icon-users">
-						<i class="icon icon-users"></i>
-						<span class="text">Login</span>
+					<button id="btnLogin" class="btn rounded2x"
+							data-icon="users"
+							data-url="https://jsonplaceholder.typicode.com/posts"
+							data-method="POST"
+							data-alert="Tombol: Login terkirim!">
+						<i class="icon icon-users"></i><span class="text">Login</span>
 					</button>
 				</div>
 			</div>
@@ -273,22 +283,18 @@
 		<script src="js/jquery.plugin.js?v=1.8.3"></script>
 		<script src="js/style.js?v=1.8.2"></script>
 		<script>
-			$('.btn-loading').on('click', function () {
-				const $btn = $(this);
-				const $icon = $btn.find('.icon');
-				if ($btn.hasClass('loading')) return;
-				const originalIcon = $btn.data('icon') || 'icon-check';
-				// Aktifkan loading
-				$btn.addClass('loading').prop('disabled', true);
-				$icon.removeClass(originalIcon).addClass('icon-spinner_2');
-				// Simulasi proses
-				setTimeout(function () {
-				$btn.removeClass('loading').prop('disabled', false);
-				$icon.removeClass('icon-spinner_2').addClass(originalIcon);
-				alert(`Tombol "${$btn.text().trim()}" selesai diproses!`);
-				}, 2000);
+			// Contoh penggunaan button ajax
+			$('#btnLoad,#btnLogin').ajaxButton({
+				payload: { userId: 1, message: 'Hello' },
+				onSuccess: function(res, btn) {
+					alert(btn.data('alert'));
+					console.log("Sukses dari tombol:", btn.text(), res);
+				},
+				onError: function(err, btn) {
+					console.error("Gagal dari tombol:", btn.text(), err);
+				}
 			});
-</script>
+		</script>
 			</div>
 	</body>
 </html>	
