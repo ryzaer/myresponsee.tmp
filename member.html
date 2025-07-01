@@ -265,9 +265,9 @@
 								var $this = $(this);
 								$($this + ' td').on('click', function() {
 									// Hapus class active dari semua baris
-									$('tr').removeClass('active');
+									$('tr').removeClass('active'),
 									// Tambahkan class active pada baris yang diklik
-									$(this).parent('tr').addClass('active');
+									$(this).parent('tr').addClass('active')
 								})
 							}
 						})

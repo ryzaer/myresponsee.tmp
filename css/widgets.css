@@ -96,6 +96,7 @@
   color:#131517; 
   border: #131517 1px solid;
   border-radius: 4px;
+  min-height: 26px;
 }
 .btn.rounded1x {
 	border-radius: 8px;
