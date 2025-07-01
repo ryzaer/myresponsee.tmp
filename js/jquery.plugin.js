@@ -201,5 +201,73 @@ function scss(e){var t=document.head||document.getElementsByTagName("head")[0],c
     }
 })(jQuery);
 
+/** Array to Table just for icon list
+ * $('#icon-table').arrayToTable(icons, { columnsPerRow: 8 });
+*/
+(function($) {
+    $.fn.arrayToTable = function(data, options) {
+        var settings = $.extend({
+            columnsPerRow: 6,       // Default jumlah kolom per baris
+            allRowInsert: true,     // Jika false, semua baris masuk ke tbody
+            filterData: null
+        }, options);
+
+        return this.each(function() {
+            var $table = $(this);
+            var $tableHead = $table.find('thead');
+            var $tableBody = $table.find('tbody');
+
+            // Reset isi tabel
+            $tableHead.empty();
+            $tableBody.empty();
+
+            var row = $('<tr></tr>');
+            var num = 0;
+            var cell, fdata;
+
+            $.each(data, function(index, value) {
+                // Jalankan filterData jika disediakan, jika tidak gunakan value asli
+                fdata = (typeof settings.filterData !== 'function') ? value : settings.filterData(index, value);
+
+                // Jika allRowInsert true, baris pertama ke thead, sisanya ke tbody
+                if (settings.allRowInsert && num === 0) {
+                    cell = $('<th></th>').html(fdata);
+                } else {
+                    cell = $('<td></td>').html(fdata);
+                }
+
+                row.append(cell);
+
+                if ((index + 1) % settings.columnsPerRow === 0) {
+                    if (settings.allRowInsert && num === 0) {
+                        $tableHead.append(row);
+                    } else {
+                        $tableBody.append(row);
+                    }
+                    row = $('<tr></tr>');
+                    num++;
+                }
+            });
+
+            // Jika ada sisa baris terakhir
+            if (row.children().length > 0) {
+                var remainingCells = settings.columnsPerRow - row.children().length;
+
+                for (var i = 0; i < remainingCells; i++) {
+                    var emptyCell = (settings.allRowInsert && num === 0) ? $('<th></th>').html('&nbsp;') : $('<td></td>').html('&nbsp;');
+                    row.append(emptyCell);
+                }
+
+                if (settings.allRowInsert && num === 0) {
+                    $tableHead.append(row);
+                } else {
+                    $tableBody.append(row);
+                }
+            }
+        });
+    };
+})(jQuery);
+
+
 /** Button Ajax */
 !function(a){a.fn.ajaxButton=function(n){return this.each(function(){let o=a(this),s=o.find(".icon"),t=o.data("icon")||"check",e=o.data("url")||n.url||"#",c=o.data("method")||n.method||"GET";o.data("alert")||n.alert,o.on("click",function(){o.hasClass("loading")||(o.hasClass("btn-ajax")||o.addClass("btn-ajax"),o.addClass("loading").prop("disabled",!0),s.removeClass(`icon-${t}`).addClass("icon-spinner_2"),a.ajax({url:e,method:c,data:n.payload||{example:"data"},success:function(a){"function"==typeof n.onSuccess&&n.onSuccess(a,o)},error:function(a){"function"==typeof n.onError&&n.onError(a,o)},complete:function(){o.removeClass("loading").prop("disabled",!1),s.removeClass("icon-spinner_2").addClass(`icon-${t}`)}}))})}),this}}(jQuery);
