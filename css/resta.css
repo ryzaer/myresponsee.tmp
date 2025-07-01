@@ -647,7 +647,17 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
 .table.table-secondary tr:first-child th {
     border-top: 2px solid #3f3f3f;	
 }
-.table.table-pointer.table-secondary tbody tr:hover {background:none repeat scroll 0 0 #616161; cursor: pointer; color:white; text-shadow: 1px 1px 1px #000;}
+@keyframes blink_secondary {
+  0% { background-color: #3f3f3f; }
+  50% { background-color: #616161; } 
+  100% { background-color: #3f3f3f; }
+}
+.table.table-secondary tr.active td {
+  animation: blink_secondary 1s infinite;
+  color:white; 
+  text-shadow: 1px 1px 1px #000;
+}
+.table.table-pointer.table-secondary tbody tr:not(.active):hover {background:none repeat scroll 0 0 #616161; cursor: pointer; color:white; text-shadow: 1px 1px 1px #000;}
 
 .table.table-warning th,
 .table.table-warning td {
@@ -661,7 +671,17 @@ a.tooltip-content.tooltip-bottom,.tooltip-content.tooltip-bottom {
 .table.table-warning tr:first-child th {
     border-top: 2px solid #f6a20e;	
 }
-.table.table-pointer.table-warning tbody tr:hover {background:none repeat scroll 0 0 #ffbd4c; cursor: pointer; color:white; text-shadow: 1px 1px 1px #000;}
+@keyframes blink_warning {
+  0% { background-color: #f6a20e; } /* Warna awal */
+  50% { background-color: #ffbd4c; } /* Warna saat berkedip */
+  100% { background-color: #f6a20e; } /* Kembali ke warna awal */
+}
+.table.table-warning tr.active td {
+  animation: blink_warning 1s infinite; /* 1s durasi, infinite pengulangan */
+  color:white; 
+  text-shadow: 1px 1px 1px #000;
+}
+.table.table-pointer.table-warning tbody tr:not(.active):hover {background:none repeat scroll 0 0 #ffbd4c; cursor: pointer; color:white; text-shadow: 1px 1px 1px #000;}
 
 /* Start CSS for Resta Bingkai Gambar */
 .bingkai {

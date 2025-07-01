@@ -32,9 +32,9 @@
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.theme.css?id=ff8bcb1"> 
 		<link rel="stylesheet" type="text/css" href="css/owl-carousel/owl.transitions.css?id=4be88d0">
 		
-		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9cdb">
+		<link rel="stylesheet" type="text/css" href="css/resta.css?id=fdc9cdc">
 		<link rel="stylesheet" type="text/css" href="css/resta.input.css?id=7fdbfbd">
-		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122d">	
+		<link rel="stylesheet" type="text/css" href="css/resta.widgets.css?id=a0122e">	
 		<style>
 			.progka {
 				width:100%;
@@ -84,17 +84,12 @@
 							<div class="box resta-border1 s-12 m-12 l-12">
 								<div class="margin">
 									<div class="s-12 m-12 l-12">
-										<style>
-
-
-
-										</style>
 										<div class="box-history box-top margin-bottom">
 											<div class="margin">
 												<div class="l-12 m-12 s-12">
 													<div class="align-content-center">
-														<button id="btnLoad" class="btn btn-info rounded1x">
-															<i class="icon-sli-printer"></i><span class="text">Register</span>
+														<button id="btnLoad" class="btn btn-linear rounded1x">
+															<i class="icon icon-sli-printer"></i><span style="font-size: 12px;" class="text">Cetak Keperluan</span>
 														</button>
 														<div class="autocomplete-box">
 															<input type="text" id="country-input" class="autocomplete-input" placeholder="Ketik negara...">
@@ -112,6 +107,7 @@
 															</tr>
 														</thead>
 													</table>
+													
 												</div>
 											</div>
 										</div>
@@ -135,7 +131,7 @@
 													</div>
 												</div>
 												<div class="s-12 m-12 l-4 margin-bottom"> 
-													<span style="display:block;padding-left:10px"><b style="color:orange">Cari Data Pemohon <span id="mod-info" class="la-info" onclick="$('.informasi').fadeToggle()" style="cursor:pointer;font-style:italic;padding:0 10px;border-radius:50px">info<span></b></span>
+													<span style="display:block;padding-left:10px"><b style="color:orange">Cari Data Pemohon <span id="mod-info" class="la-info" onclick="$('.informasi').fadeToggle()" style="cursor:pointer;font-style:italic;padding:0 8px 0 10px;border-radius:25px"><i style="position:relative;top:.8px;margin-right:2px;margin-left:-8px" class="icon icon-sli-info"></i>info<span></b></span>
 													<input class="input-cari cari-nama" style="width:100%;"  type="text" name="pencarian" placeholder=".....">
 												</div>						
 												<div class="informasi s-12 m-12 l-12" style="display:none"> 
@@ -264,7 +260,16 @@
 					// contoh penggunaan autocomplete
 					$.getJSON("source/negara.json", function(data) {
 						!data || $('#country-input').simpleAutocomplete({
-							data: data
+							data: data,
+							onSuccess: function(res) {
+								var $this = $(this);
+								$($this + ' td').on('click', function() {
+									// Hapus class active dari semua baris
+									$('tr').removeClass('active');
+									// Tambahkan class active pada baris yang diklik
+									$(this).parent('tr').addClass('active');
+								})
+							}
 						})
 					}),
 					// contoh penggunaan simple table pagination
@@ -272,7 +277,23 @@
 						!data || $("#myTable").simplePaginate({
 							data: data,
 							rowsPerPage: 5,
-							columns: ["no", "nama", "alamat"]
+							columns: ["no", "nama", "alamat"],
+							onSuccess: function(data, rowElement) {
+								// Binding event click ke semua <td> dalam tbody yang baru saja di-render
+								$(this).find('tbody td').on('click', function () {
+									// Hapus class active dari semua baris
+									$('tr').removeClass('active');
+									$('#btnLoad').addClass('btn-warning active').find('span').text('Edit Keperluan');
+									// Tambahkan class active pada baris yang diklik
+									var $this = $(this);
+									$this.parent('tr').addClass('active');
+									$('#btnLoad.active').off().on('click', function() {
+										alert('update');
+										$this.parent('tr').removeClass('active');
+										$('#btnLoad').removeClass('btn-warning active').find('span').text('Cetak Keperluan');
+									})
+								});
+							}
 						})
 					});
 					// Contoh penggunaan button ajax
@@ -287,7 +308,8 @@
 							console.error("Gagal dari tombol:", btn.text(), err);
 						}
 					});
-				})
+				});
+				
 			</script>
 		</div>
 	</body>
