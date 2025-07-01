@@ -331,10 +331,13 @@
 									// Tambahkan class active pada baris yang diklik
 									var $this = $(this);
 									$this.parent('tr').addClass('active');
+									$('.pagination2').fadeOut(400);
 									$('#btnLoad.active').off().on('click', function() {
 										alert('update');
 										$this.parent('tr').removeClass('active');
 										$('#btnLoad').removeClass('btn-warning active').find('span').text('Cetak Keperluan');
+										$('.pagination2').fadeIn(400);
+										$(this).off()
 									})
 								});
 							}
