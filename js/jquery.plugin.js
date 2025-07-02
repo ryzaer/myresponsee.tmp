@@ -131,21 +131,51 @@ function scss(e){var t=document.head||document.getElementsByTagName("head")[0],c
 })(jQuery);
 /** Simple Paginate 
  * 
-!function(t){t.fn.simplePaginate=function(e){const n=t.extend({data:[],rowsPerPage:5,columns:[]},e),a=this,o=t('<div class="align-content-center pagination2 margin-bottom"></div>').insertAfter(a);let s=1;function i(e){const o=(e-1)*n.rowsPerPage,s=o+n.rowsPerPage,i=n.data.slice(o,s);let r=a.find("tbody");0===r.length&&(r=t("<tbody></tbody>").appendTo(a)),r.empty(),i.forEach(e=>{const a=t("<tr></tr>");n.columns.forEach(t=>{a.append(`<td>${e[t]}</td>`)}),r.append(a)})}function r(){const e=Math.ceil(n.data.length/n.rowsPerPage);if(o.empty(),n.data.length<=n.rowsPerPage)o.hide();else{o.show();for(let n=1;n<=e;n++){const e=t(`<button data-page="${n}">${n}</button>`);n===s&&e.addClass("active"),o.append(e)}}}return o.on("click","button",function(){s=parseInt(t(this).attr("data-page")),i(s),r()}),i(s),r(),this}}(jQuery);
+// cara panggil plugin
+$("#myTable").simplePaginate({
+    data: data,
+    rowsPerPage: 5,
+    currentPage: 3, // (optional) misal ingin langsung kehalaman 3
+    columns: ["no", "nama", "alamat"],
+    onSuccess: function (data, tbody) {
+        $(this).find('tbody td').on('click', function () {
+            $('tr').removeClass('active');
+            $(this).parent('tr').addClass('active');
+        });
+    }
+});
+// Jika data API sudah diperbarui tetap di currentPage aktif
+$("#myTable").simplePaginate('updateData', newData);
+// Jika data API sudah diperbarui dan ingin pergi ke halaman 3
+$("#myTable").simplePaginate('updateData', newData, 3);
+// Jika ingin mendestroy plugin
+$("#myTable").simplePaginate('destroy');
 */
+
 (function ($) {
-    $.fn.simplePaginate = function (options) {
+    $.fn.simplePaginate = function (optionsOrMethod) {
+        if (typeof optionsOrMethod === 'string') {
+            const method = optionsOrMethod;
+            const args = Array.prototype.slice.call(arguments, 1);
+            const instance = this.data('simplePaginate');
+
+            if (instance && typeof instance[method] === 'function') {
+                return instance[method].apply(instance, args);
+            }
+            return this;
+        }
+
         const settings = $.extend({
             data: [],
             rowsPerPage: 5,
+            currentPage: 1,
             columns: [],
-            onSuccess: function () { } // Dipanggil setelah semua data ter-append
-        }, options);
+            onSuccess: function () { }
+        }, optionsOrMethod);
 
         const table = this;
-        const pagination = $('<div class="align-content-center pagination2 margin-bottom"></div>').insertAfter(table);
-
-        let currentPage = 1;
+        const pagination = $('<div class="align-content-center simple-pg"></div>').insertAfter(table);
+        let currentPage = settings.currentPage;
 
         function renderPage(page) {
             const startIndex = (page - 1) * settings.rowsPerPage;
@@ -167,7 +197,6 @@ function scss(e){var t=document.head||document.getElementsByTagName("head")[0],c
                 tbody.append(row);
             });
 
-            // Panggil event onSuccess setelah semua data ter-append
             settings.onSuccess.call(table, pageData, tbody);
         }
 
@@ -194,13 +223,35 @@ function scss(e){var t=document.head||document.getElementsByTagName("head")[0],c
             renderPagination();
         });
 
+        this.data('simplePaginate', {
+            updateData: function (newData, newPage) {
+                settings.data = newData;
+
+                if (typeof newPage !== 'undefined' && !isNaN(newPage)) {
+                    currentPage = newPage;
+                }
+
+                const totalPages = Math.ceil(settings.data.length / settings.rowsPerPage);
+                if (currentPage > totalPages) {
+                    currentPage = totalPages > 0 ? totalPages : 1;
+                }
+
+                renderPage(currentPage);
+                renderPagination();
+            },
+            destroy: function () {
+                pagination.remove();
+                table.find('tbody').remove();
+                table.removeData('simplePaginate');
+            }
+        });
+
         renderPage(currentPage);
         renderPagination();
 
         return this;
     }
 })(jQuery);
-
 /** Array to Table just for icon list
  * $('#icon-table').arrayToTable(icons, { columnsPerRow: 8 });
 */
