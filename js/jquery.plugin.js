@@ -322,3 +322,79 @@ $("#myTable").simplePaginate('destroy');
 
 /** Button Ajax */
 !function(a){a.fn.ajaxButton=function(n){return this.each(function(){let o=a(this),s=o.find(".icon"),t=o.data("icon")||"check",e=o.data("url")||n.url||"#",c=o.data("method")||n.method||"GET";o.data("alert")||n.alert,o.on("click",function(){o.hasClass("loading")||(o.hasClass("btn-ajax")||o.addClass("btn-ajax"),o.addClass("loading").prop("disabled",!0),s.removeClass(`icon-${t}`).addClass("icon-spinner_2"),a.ajax({url:e,method:c,data:n.payload||{example:"data"},success:function(a){"function"==typeof n.onSuccess&&n.onSuccess(a,o)},error:function(a){"function"==typeof n.onError&&n.onError(a,o)},complete:function(){o.removeClass("loading").prop("disabled",!1),s.removeClass("icon-spinner_2").addClass(`icon-${t}`)}}))})}),this}}(jQuery);
+
+/** ini contoh simple Alert */
+(function($) {
+    $.simpleAlert = function(options) {
+        var settings = $.extend({
+            title: 'Alert',
+            message: 'This is a simple alert!',
+            type: '', // success, error, warning, info
+            showYesNo: false,
+            yesText: 'Yes',
+            noText: 'No',
+            buttonText: 'OK',
+            autoClose: 0, // in milliseconds, 0 = manual close
+            onClose: null,
+            onYes: null,
+            onNo: null
+        }, options);
+
+        // Remove existing alerts
+        $('.simple-alert-overlay').remove();
+
+        var overlay = $('<div class="simple-alert-overlay"></div>');
+        var box = $('<div class="simple-alert-box"></div>').addClass(settings.type);
+
+        var title = $('<h3></h3>').text(settings.title);
+        var message = $('<p></p>').text(settings.message);
+
+        box.append(title, message);
+
+        // Button Config
+        if (settings.showYesNo) {
+            var btnYes = $('<button></button>').text(settings.yesText);
+            var btnNo = $('<button></button>').text(settings.noText).css('background', '#6c757d');
+
+            btnYes.on('click', function() {
+                overlay.fadeOut(200, function() {
+                    overlay.remove();
+                    if (typeof settings.onYes === 'function') settings.onYes();
+                });
+            });
+
+            btnNo.on('click', function() {
+                overlay.fadeOut(200, function() {
+                    overlay.remove();
+                    if (typeof settings.onNo === 'function') settings.onNo();
+                });
+            });
+
+            box.append(btnYes, btnNo);
+
+        } else if (settings.autoClose === 0) {
+            // Show single button if no auto-close
+            var btnClose = $('<button></button>').text(settings.buttonText);
+            btnClose.on('click', function() {
+                overlay.fadeOut(200, function() {
+                    overlay.remove();
+                    if (typeof settings.onClose === 'function') settings.onClose();
+                });
+            });
+            box.append(btnClose);
+        }
+
+        overlay.append(box);
+        $('body').append(overlay);
+
+        // Auto close logic
+        if (settings.autoClose > 0) {
+            setTimeout(function() {
+                overlay.fadeOut(200, function() {
+                    overlay.remove();
+                    if (typeof settings.onClose === 'function') settings.onClose();
+                });
+            }, settings.autoClose);
+        }
+    };
+})(jQuery);

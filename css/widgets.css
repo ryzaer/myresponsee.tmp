@@ -692,3 +692,54 @@ body.modal-margin {
   background: #f2ac29;
   color: white;
 }
+
+/* PLUGIN Simple Alert CSS */
+.simple-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.simple-alert-box {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeInScale 0.3s ease;
+}
+
+.simple-alert-box h3 {
+    margin: 0 0 10px;
+}
+
+.simple-alert-box p {
+    margin: 0 0 20px;
+}
+
+.simple-alert-box button {
+    padding: 8px 16px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tambahan tipe alert */
+.simple-alert-box.success { border-left: 5px solid #28a745; }
+.simple-alert-box.error { border-left: 5px solid #dc3545; }
+.simple-alert-box.warning { border-left: 5px solid #ffc107; }
