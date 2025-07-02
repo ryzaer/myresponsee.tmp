@@ -346,8 +346,8 @@ $("#myTable").simplePaginate('destroy');
         var overlay = $('<div class="simple-alert-overlay"></div>');
         var box = $('<div class="simple-alert-box"></div>').addClass(settings.type);
 
-        var title = $('<h3></h3>').text(settings.title);
-        var message = $('<p></p>').text(settings.message);
+        var title = $('<h4></h4>').html(settings.title);
+        var message = $('<p></p>').html(settings.message);
 
         box.append(title, message);
 

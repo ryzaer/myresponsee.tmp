@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Radio Group with Mobile Menu</title>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+        }
+
+        .menu-button {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background-color: white;
+            color: #007bff;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .menu-button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .radio-group {
+            display: inline-flex;
+            border: 2px solid #007bff;
+            border-radius: 50px;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            flex-wrap: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .radio-input {
+            display: none;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            color: #333;
+            border-right: 1px solid #007bff;
+            transition: all 0.3s ease;
+            user-select: none;
+            font-size: 16px;
+        }
+
+        .radio-label:last-of-type {
+            border-right: none;
+        }
+
+        .radio-input:checked + .radio-label {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .radio-label i {
+            font-size: 16px;
+        }
+
+        .radio-label:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Mobile style: stack items, controlled by menu */
+        @media (max-width: 768px) {
+            .radio-group {
+                display: none;
+                flex-direction: column;
+                border: none;
+                background-color: transparent;
+            }
+
+            .radio-group.show {
+                display: flex;
+            }
+
+            .radio-label {
+                border: 2px solid #007bff;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                border-right: none !important;
+                background-color: white;
+                justify-content: flex-start;
+            }
+
+            .radio-label:hover {
+                background-color: #e0e0e0;
+            }
+
+            .radio-input:checked + .radio-label {
+                background-color: #007bff;
+                color: white;
+            }
+
+            .menu-button {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Menu Button (only show in mobile) -->
+        <div class="menu-button" id="menuButton"><i class="fas fa-bars"></i> Menu</div>
+
+        <!-- Single Radio Group -->
+        <div class="radio-group" id="radioGroup">
+            <input type="radio" id="option1" name="options" class="radio-input" value="option1" checked>
+            <label for="option1" class="radio-label"><i class="fas fa-home"></i> Home</label>
+
+            <input type="radio" id="option2" name="options" class="radio-input" value="option2">
+            <label for="option2" class="radio-label"><i class="fas fa-user"></i> Profile</label>
+
+            <input type="radio" id="option3" name="options" class="radio-input" value="option3">
+            <label for="option3" class="radio-label"><i class="fas fa-cog"></i> Settings</label>
+        </div>
+    </div>
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const radioGroup = document.getElementById('radioGroup');
+
+        menuButton.addEventListener('click', () => {
+            radioGroup.classList.toggle('show');
+        });
+    </script>
+
+</body>
+</html>

@@ -96,10 +96,23 @@
 							</div>
 							<div class="box box-content box-top">
 								<div class="margin">
+									<style>
+										
+									</style>
 									<div class="s-12 m-12 l-12">
-										<h5>
-											BLANK BOX AREA
-										</h5>
+										<div class="radio-group">
+											<input type="radio" id="option1" name="options" class="segment" checked>
+											<label for="option1" class="segment-label"><i class="icon icon-user"></i>Option 1</label>
+
+											<input type="radio" id="option2" name="options" class="segment">
+											<label for="option2" class="segment-label"><i class="icon icon-user"></i>Option 2</label>
+
+											<input type="radio" id="option3" name="options" class="segment">
+											<label for="option3" class="segment-label"><i class="icon icon-user"></i>Option 3</label>
+
+											<input type="radio" id="option4" name="options" class="segment">
+											<label for="option4" class="segment-label"><i class="icon icon-user"></i>Option 4 test</label>
+										</div>
 										<div class="box-editor margin-bottom">
 											<div class="margin">
 												<div class="s-12 m-12 l-4">
@@ -282,8 +295,8 @@
 										$(this).off();
 										// panggil simple alert
 										$.simpleAlert({
-										    title: 'Auto Close',
-										    message: 'sukses edit keperluan',
+										    title: 'Sukses',
+										    message: '<i class="icon icon-pen"></i>  Data ini itu telah di edit',
 										    type: 'success',
 										    autoClose: 1000
 										});
