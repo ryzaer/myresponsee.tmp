@@ -946,7 +946,7 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 0.625rem;
 }
 .center {
   float:none;
@@ -1170,7 +1170,7 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
   list-style:none outside none;
   padding:10px;
 }
-.margin,.margin2x {display: block;}
+/* .margin,.margin2x {display: block;} */
 .margin {margin:0 -0.625rem;}
 .margin2x {margin:0 -1.25rem;}
 .line {clear:left; padding:0;}

@@ -788,3 +788,42 @@ body.modal-margin {
 .simple-alert-box.success { border-left: 5px solid #88e4aa; }
 .simple-alert-box.error { border-left: 5px solid #f46565; }
 .simple-alert-box.warning { border-left: 5px solid #edc271; }
+
+/* LIST GROUP */
+.list-group {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.list-group li span {
+  color:#f2ac29;
+}
+.list-group li {
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 2px;
+  margin-bottom: 0.256rem;
+  color: #fff;
+  display: flex; /* tambahkan flex */
+  align-items: center; /* agar icon dan text sejajar vertikal */
+  gap: 8px; /* jarak antara icon dan text */
+  font-size: 12px;
+  cursor: pointer;
+}
+.list-group li:hover {
+  background-color: #585858;
+}
+.list-group li:hover span {
+  color: white;
+}
+.list-group li .icon {
+  color: #585858;
+  background-color: #fff;
+  padding: 2px 5px;
+  border-radius: 30px;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

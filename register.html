@@ -100,81 +100,72 @@
 			<main class="content"> 					
 				<div class="line">
 					<div class="margin">
-						<div class="s-12 m-12 l-12">
-							<!-- <div class="box box-content"> -->
-								<div class="margin">
-									<div class="align-content-center margin-bottom">
-										<div class="from-compliment s-12 m-12 l-6 padding">
-											<div class="box box-content">
-												<h4>#1 Verifikasi Data*</h4>
-												<small><i style=color:#c00>Tanda(*) Wajib diisi</i></small>
-												<div class="margin margin-bottom">
-													<div class="s-12 l-12 m-12">
-														<small>Nomor KTP* <span class=signup-error></span></small>
-														<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
-													</div>
-													<div class="s-12 l-12 m-12">
-														<div class="margin">
-															<div class="s-12 m-8 l-8">
-																<small>Alamat Domisili Pontianakd* <span class=signup-error></span></small>
-																<textarea class=wideBox id=alamat_ktp name=alamat[] placeholder="Alamat Domisili Pontianak" style=text-transform:capitalize></textarea>
-															</div>
-															<div class="s-4 m-2 l-2">
-																<small>Rt:* <span class=signup-error></span></small>
-																<input id=rt_ktp name=rt[] placeholder=Rt>
-															</div>
-															<div class="s-4 m-2 l-2">
-																<small>Rw:* <span class=signup-error></span></small>
-																<span class=signup-error id=rw_ktp-error></span>
-																<input id=rw_ktp name=rw[] placeholder=Rw>
-															</div>
-														</div>
-													</div>
-													<div class="l-3 m-6 s-6">
-														<small>Propinsi* <span class=signup-error></span></small>
-														<select class=normal-select id=propinsi_ktp name=propinsi[]>
-															<option value=61 selected>Prop. Kalimantan Barat
-														</select>
-													</div>
-													<div class="l-3 m-6 s-6">
-														<small>Kota/ Kabupaten* <span class=signup-error></span></small>
-														<select class=normal-select id=kab_ktp name=kab[]>
-															<option value="" selected>- Pilih Kota / Kab -
-															<option value=6112>Kab. Kubu Raya
-															<option value=6171>Kota Pontianak
-														</select>
-													</div>
-													<div class="l-3 m-6 s-6">
-														<small>Kecamatan* <span class=signup-error></span></small>
-														<select class=normal-select id=kec_ktp name=kec[]>
-															<option value="" selected>- Pilih Kecamatan -
-														</select>
-													</div>
-													<div class="l-3 m-6 s-6">
-														<small>Desa / Lurah* <span class=signup-error></span></small>
-														<select class=normal-select id=kel_ktp name=kel[]>
-															<option value="" selected>- Pilih Desa / Lurah -
-														</select>
-													</div>
+						<div class="align-content-center margin-bottom">
+							<div class="from-compliment s-12 m-8 l-6">
+								<!-- <div class="margin"> -->
+								<div class="box box-content">
+									<h4>#1 Verifikasi Data*</h4>
+									<small><i style=color:#c00>Tanda(*) Wajib diisi</i></small>
+									<div class="margin margin-bottom">
+										<div class="s-12 l-12 m-12">
+											<small>Nomor KTP* <span class=signup-error></span></small>
+											<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+										</div>
+										<div class="s-12 l-12 m-12">
+											<div class="margin">
+												<div class="s-12 m-8 l-8">
+													<small>Alamat Domisili Pontianakd* <span class=signup-error></span></small>
+													<textarea class=wideBox id=alamat_ktp name=alamat[] placeholder="Alamat Domisili Pontianak" style=text-transform:capitalize></textarea>
 												</div>
-												<div class="align-content-center">
-													<!-- <button id="btnLoad" class="btn btn-ajax btn-success" data-icon="icon-check">
-														<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
-													</button> -->
-													<button id="btnLoad" class="btn btn-success"
-															data-icon="check"
-															data-url="https://jsonplaceholder.typicode.com/posts"
-															data-method="POST"
-															data-alert="Tombol: Verifikasi terkirim!">
-														<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
-													</button>
+												<div class="s-4 m-2 l-2">
+													<small>Rt:* <span class=signup-error></span></small>
+													<input id=rt_ktp name=rt[] placeholder=Rt>
+												</div>
+												<div class="s-4 m-2 l-2">
+													<small>Rw:* <span class=signup-error></span></small>
+													<span class=signup-error id=rw_ktp-error></span>
+													<input id=rw_ktp name=rw[] placeholder=Rw>
 												</div>
 											</div>
 										</div>
-										
+										<div class="l-3 m-6 s-6">
+											<small>Propinsi* <span class=signup-error></span></small>
+											<select class=normal-select id=propinsi_ktp name=propinsi[]>
+												<option value=61 selected>Prop. Kalimantan Barat
+											</select>
+										</div>
+										<div class="l-3 m-6 s-6">
+											<small>Kota/ Kabupaten* <span class=signup-error></span></small>
+											<select class=normal-select id=kab_ktp name=kab[]>
+												<option value="" selected>- Pilih Kota / Kab -
+												<option value=6112>Kab. Kubu Raya
+												<option value=6171>Kota Pontianak
+											</select>
+										</div>
+										<div class="l-3 m-6 s-6">
+											<small>Kecamatan* <span class=signup-error></span></small>
+											<select class=normal-select id=kec_ktp name=kec[]>
+												<option value="" selected>- Pilih Kecamatan -
+											</select>
+										</div>
+										<div class="l-3 m-6 s-6">
+											<small>Desa / Lurah* <span class=signup-error></span></small>
+											<select class=normal-select id=kel_ktp name=kel[]>
+												<option value="" selected>- Pilih Desa / Lurah -
+											</select>
+										</div>
+									</div>
+									<div class="align-content-center">
+										<button id="btnLoad" class="btn btn-success"
+												data-icon="check"
+												data-url="https://jsonplaceholder.typicode.com/posts"
+												data-method="POST"
+												data-alert="Tombol: Verifikasi terkirim!">
+											<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
+										</button>
 									</div>
 								</div>
-							</div>
+							</div>								
 						</div>
 					</div>				
 				</div>
