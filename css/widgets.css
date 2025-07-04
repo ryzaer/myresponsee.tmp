@@ -328,13 +328,45 @@ body.modal-margin {
 /* Start CSS for Resta Label [<a class="la-info">text</a>] */
 .la-info {
    background: #65a9d7;
-   padding: 2px 4px;
+   padding: 1px 4px 1px 3px;
    -webkit-border-radius: 4px;
    -moz-border-radius: 4px;
    border-radius: 4px;
    color: #ffffff;
    font-size: 12px;
    vertical-align: middle;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* padding rata atas bawah kiri kanan */
+  padding: .8px 6px .8px 3px; 
+  /* padding-left: 1.8px;
+  padding-right: 2px;
+  min-width: 30px; */
+  padding-bottom: .5px;
+  background: #585858;
+  color: #ffffff;
+  font-size: 10px;
+  gap: 7px; /* jarak antara icon dan teks */
+  border-radius: 25px;
+  cursor: pointer;
+}
+/* .label .icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} */
+.label-info {
+     background: #65a9d7;
+}
+.label-warning {
+     background: #ffa628;
+}
+.label-danger {
+     background: #ef5a4d;
 }
 /* Plugin autocomplete */
 .autocomplete-box {

@@ -88,12 +88,14 @@
 											<div style="padding-left: 10px;">
 												<b>RIWAYAT SKCK PEMOHON</b>
 											</div>
+											<style>
+											</style>
 											<table id="myTable" style="width: 100%;" class="table table-white table-rounded table-pointer table-warning margin-bottom">
 												<thead>
 													<tr>
 														<th>ID</th>
 														<th>Nama</th>
-														<th>Alamat</th>
+														<th colspan="2">Alamat</th>
 													</tr>
 												</thead>
 											</table>
@@ -215,7 +217,7 @@
 														</div>
 													</div>
 													<div class="s-12 m-12 l-4 margin-bottom"> 
-														<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Data Pemohon <span id="mod-info" class="la-info" onclick="$('.informasi').fadeToggle()" style="cursor:pointer;font-style:italic;padding:0 8px 0 10px;border-radius:25px"><i style="position:relative;top:.89px;margin-right:2px;margin-left:-8px" class="icon icon-sli-info"></i>info<span></b></span>
+														<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Data Pemohon</b>&nbsp;<span id="mod-info" onclick="$('.informasi').fadeToggle()" class="label label-info"><i class="icon icon-sli-info"></i>Info</span></span>
 														<input class="searching cari-nama" style="width:100%;"  type="text" name="pencarian" placeholder=".....">
 													</div>						
 													<div class="informasi s-12 m-12 l-12" style="display:none"> 
@@ -266,14 +268,14 @@
 													</div>
 												</div>
 												<div class="s-7 m-5 l-3">
-													<p><i><b>History Pemohon :</b></i></p>
+													<p><i><b>Riwayat Penerbitan :</b></i></p>
 													<ul class="list-group">
-														<li><i class="icon icon-user_male"></i><span>Rizki Ananda</span></li>
-														<li><i class="icon icon-user_female"></i><span>Fitriana Diah Pertiwi Sari Pur</span></li>
-														<li><i class="icon icon-user_male"></i><span>Rizki Ananda</span></li>
-														<li><i class="icon icon-user_male"></i><span>Rizki Ananda</span></li>
-														<li><i class="icon icon-user_male"></i><span>Rizki Ananda</span></li>
-														<li><i class="icon icon-user_female"></i><span>Fitriana Diah Pertiwi Sari Pur</span></li>
+														<li><i class="icon icon-sli-user"></i><span>Rizki Ananda</span></li>
+														<li><i class="icon icon-sli-user-female"></i><span>Fitriana Diah Pertiwi Sari Pur</span></li>
+														<li><i class="icon icon-sli-user"></i><span>Rizki Ananda</span></li>
+														<li><i class="icon icon-sli-user"></i><span>Rizki Ananda</span></li>
+														<li><i class="icon icon-sli-user"></i><span>Rizki Ananda</span></li>
+														<li><i class="icon icon-sli-user-female"></i><span>Fitriana Diah Pertiwi Sari Pur</span></li>
 													</ul>
 												</div>
 											</div>
@@ -378,12 +380,12 @@
 						})
 					}),
 					// contoh penggunaan simple table pagination
-					$.getJSON("source/biodata.json", function(data) {
+					$.getJSON("source/biodata.json?_=test2", function(data) {
 						!data || $("#myTable").simplePaginate({
 							data: data,
 							rowsPerPage: 5,
-							currentPage: 2,
-							columns: ["no", "nama", "alamat"],
+							// currentPage: 2,
+							columns: ["no", "nama", "alamat", "editor"],
 							onSuccess: function(data, rowElement) {
 								// Binding event click ke semua <td> dalam tbody yang baru saja di-render
 								$(this).find('tbody td').on('click', function () {
