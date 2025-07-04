@@ -147,13 +147,11 @@ select,input,textarea{
   border: #5b5b5b 1px solid;
 	border-radius: 4px;		
 	padding:3px 5px 3px 5px;	
-	width:100%;
-	text-decoration: none;
+	width:100%;	
 	outline: none;
+  font-family: "Poppins";
 }
-select,input,textarea {
-  margin-bottom: 2.5px;
-}
+
 input.searching {
 	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktc2VhcmNoIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik0xMS43NDIgMTAuMzQ0YTYuNSA2LjUgMCAxIDAtMS4zOTcgMS4zOThoLS4wMDFxLjA0NC4wNi4wOTguMTE1bDMuODUgMy44NWExIDEgMCAwIDAgMS40MTUtMS40MTRsLTMuODUtMy44NWExIDEgMCAwIDAtLjExNS0uMXpNMTIgNi41YTUuNSA1LjUgMCAxIDEtMTEgMCA1LjUgNS41IDAgMCAxIDExIDAiLz4KPC9zdmc+) no-repeat 5px 5px #FFF;
 	border: 1px solid #848484; 
@@ -371,7 +369,7 @@ body.modal-margin {
 /* Plugin autocomplete */
 .autocomplete-box {
 	position: relative;
-	padding-top: 4.5px;
+	/* padding-top: 3px; */
 	width: 300px;
 }
 .autocomplete-input {

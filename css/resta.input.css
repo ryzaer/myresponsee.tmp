@@ -14,22 +14,6 @@
 	
 }
 
-.chkJingga[type=checkbox] { display:none; }
-.chkJingga[type=checkbox] + label:before {
-	display:inline-block;
-	font-family: 'mfg';
-	font-size:17px;
-	font-weight:bold;
-	font-style:normal;
-	vertical-align: middle;
-	line-height: 17px;  
-}
-
-.chkJingga[type=checkbox] + label:before { content: "\f06d";color:#5b5b5b} 
-.chkJingga[type=checkbox] + label:before { letter-spacing: 5px;} 
-
-.chkJingga[type=checkbox]:checked + label:before { content: "\f06d"; color:#e59400 }
-.chkJingga[type=checkbox]:checked + label:before { letter-spacing: 5px; } 
 
 .fileTags { overflow: hidden; position: relative; }
 .fileTags [type=file] {

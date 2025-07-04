@@ -824,7 +824,7 @@ html, body {
 
 body {
   background:none repeat scroll 0 0 #fff;  
-  font-family:"Gtwalsheim",Arial,sans-serif;
+  font-family:"Poppins",Arial,sans-serif;
   font-size:14px;
   color:#000;
 }
@@ -925,7 +925,6 @@ mark {
 }
 table {
   line-height: 1.2;
-  font-size:14px;
 }
 .table.table-white{
   -webkit-box-shadow: 0px 0px 1px #4d4d4d;
@@ -1052,7 +1051,6 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
 }
 .nav-menu:last-child{
   margin-top:-1.9px;
-  font-weight: bold;
   float: right;
 }
 .nav-menu:last-child a {
@@ -1120,8 +1118,8 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
 .aside-nav li a,.aside-nav li a:link,.aside-nav li a:visited {
   color:#000;
   display:block;
-  font-size: 19px;
-  font-weight:bold;
+  font-size: 18px;
+  /* font-weight:bold; */
   line-height:1.238em;
   padding:7px;
   background:url(../image/button-tail.gif) 0 0 repeat-x #dbdbdb;
@@ -1138,7 +1136,6 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
   display:block;
   position:relative;
   overflow:hidden; 
-    
 }
 .aside-nav li ul ul {
   border:0;
@@ -1159,9 +1156,7 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
 }
 .aside-nav > ul > li > a:hover {color:#fff;}
 .aside-nav li li a:hover:before, .aside-nav li li.active-item a:before {
-  display:inline-block;
-  font-size:0.6rem;
-  
+  display:inline-block;  
 } 
 
 .aside-nav .show-aside-ul, .aside-nav {height:auto; margin: 0 0 0 10px; }

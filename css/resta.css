@@ -4,7 +4,7 @@
  * Copyright by riza.
 */
 
-@font-face {
+/* @font-face {
   font-family: 'Gtwalsheim';
   src: url('../font/Gt-Walsheim-Web/gt-walsheim-web.eot');
   src: url('../font/Gt-Walsheim-Web/gt-walsheim-web.eot?#iefix') format('embedded-opentype'),
@@ -30,8 +30,7 @@
 	   url('../font/Gt-Walsheim-Web/gt-walsheim-thin-web.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
-}
-.font-gtw-med {font-family: 'GtwalsheimMed';}
+} */
 .bold-text {color:black;font-weight: bold;}
 
 /* Custom scrollbar */
@@ -250,7 +249,7 @@ body::-webkit-scrollbar-thumb:hover {
 	transform: rotate(20deg);
 }
 .ca-menu li:hover .ca-main{
-	font-family: 'GtwalsheimMed';
+	/* font-family: 'GtwalsheimMed'; */
 	color: #CD5C5C;
 	
 }
@@ -270,7 +269,7 @@ body::-webkit-scrollbar-thumb:hover {
 	transform: rotate(20deg);
 }
 .ca-menu .ca-active .ca-main{
-	font-family: 'GtwalsheimMed';
+	/* font-family: 'GtwalsheimMed'; */
 	color: #CD5C5C;
 	
 }
