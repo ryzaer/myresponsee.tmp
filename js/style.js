@@ -24,15 +24,15 @@ jQuery(document).ready(function(t) {
         t(e).click(function() {
             t(".aside-nav > ul").toggleClass("show-menu", "slow")
         })
-    }), t(".top-nav > ul > li ul").each(function(a, e) {
+    }), t(".nav-menu > ul > li ul").each(function(a, e) {
         var l = '<span class="count-number"> ' + t(e).find("li").length + "</span>";
         t(e).closest("li").children("a").append(l)
-    }), t(".top-nav > ul li:has(ul)").addClass("submenu"), t(".top-nav > ul ul li:has(ul)").addClass("sub-submenu").removeClass("submenu"), t(".top-nav > ul li.submenu > a").attr("aria-haspopup", "true").click(function() {
-        t(".top-nav > ul li.submenu > ul").removeClass("show-ul", "slow"), t(".top-nav > ul li.submenu:hover > ul").toggleClass("show-ul", "slow")
-    }), t(".top-nav > ul ul > li.sub-submenu > a").attr("aria-haspopup", "true").click(function() {
-        t(".top-nav ul ul li > ul").removeClass("show-ul", "slow"), t(".top-nav ul ul li:hover > ul").toggleClass("show-ul", "slow")
+    }), t(".nav-menu > ul li:has(ul)").addClass("submenu"), t(".nav-menu > ul ul li:has(ul)").addClass("sub-submenu").removeClass("submenu"), t(".nav-menu > ul li.submenu > a").attr("aria-haspopup", "true").click(function() {
+        t(".nav-menu > ul li.submenu > ul").removeClass("show-ul", "slow"), t(".nav-menu > ul li.submenu:hover > ul").toggleClass("show-ul", "slow")
+    }), t(".nav-menu > ul ul > li.sub-submenu > a").attr("aria-haspopup", "true").click(function() {
+        t(".nav-menu ul ul li > ul").removeClass("show-ul", "slow"), t(".nav-menu ul ul li:hover > ul").toggleClass("show-ul", "slow")
     }), t(".nav-text").click(function() {
-        t(".top-nav > ul").toggleClass("show-menu", "slow")
+        t(".nav-menu > ul").toggleClass("show-menu", "slow")
     }), t(function() {
         "placeholder" in document.createElement("input") == 0 && t("[placeholder]").focus(function() {
             var a = t(this);

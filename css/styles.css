@@ -1270,7 +1270,6 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
     overflow:hidden;
     position:relative;
     z-index:999;
-    margin-bottom: 20px;
   }
   .nav-menu > ul.show-menu, .aside-nav.minimize-on-small {height:auto;}
   .nav-menu ul ul {

@@ -52,8 +52,8 @@
 				<div class="line">
 					<nav class="nav-group">
 						<div class="nav-menu operator">
-							<a style="color:#25d366;" href="./member" title="Dashboard"><i class="icon icon-chart"></i> Editor</a>
-							<a style="color:#ffffff;" href="./" title="Profil Operator"><i class="icon icon-user"></i> User</a>
+							<a style="color:#25d366;" href="./member" title="Dashboard"><i class="icon icon-chart"></i> Dashboard</a>
+							<!-- <a style="color:#ffffff;" href="./" title="Profil Operator"><i class="icon icon-user"></i> User</a> -->
 							<a style="color:#ecb857;" class="open-modal-btn" title="Logout"><i  class="icon icon-signout"></i> Keluar</a>			  
 						</div>
 					</nav>
@@ -72,118 +72,203 @@
 				<div class="line">
 					<div class="margin">
 						<div class="s-12 m-12 l-12 margin-bottom">
-							<div class="box box-header box-bottom">
-								<div class="margin">
-									<div class="l-12 m-12 s-12">
-										<div class="align-content-center margin-bottom">
-											<button id="btnLoad" class="btn btn-linear rounded1x">
-												<i class="icon-sli-printer"></i><span style="font-size: 12px;" class="text">Cetak Keperluan</span>
-											</button>
-											<div class="autocomplete-box">
-												<input type="text" id="country-input" class="autocomplete-input" placeholder="Ketik negara...">
+							<!-- EDITING KEPERLUAN PEMOHON -->
+							<div id="edit-pemohon">							
+								<div class="box box-header box-bottom">
+									<div class="margin">
+										<div class="l-12 m-12 s-12">
+											<div class="align-content-center margin-bottom">
+												<button id="btnLoad" class="btn btn-linear rounded1x">
+													<i class="icon-sli-printer"></i><span style="font-size: 12px;" class="text">Cetak Keperluan</span>
+												</button>
+												<div class="autocomplete-box">
+													<input type="text" id="country-input" class="autocomplete-input" placeholder="Ketik negara...">
+												</div>
+											</div>
+											<div style="padding-left: 10px;">
+												<b>RIWAYAT SKCK PEMOHON</b>
+											</div>
+											<table id="myTable" style="width: 100%;" class="table table-white table-rounded table-pointer table-warning margin-bottom">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Nama</th>
+														<th>Alamat</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="box box-content box-top margin-bottom">
+									<div class="margin">
+										<div class="s-12 m-12 l-6">
+											<h4>#1 Verifikasi Data*</h4>
+											<small><i style=color:#c00>Tanda(*) Wajib diisi</i></small>
+											<div class="margin margin-bottom">
+												<div class="s-12 l-12 m-12">
+													<small>Nomor KTP* <span class=signup-error></span></small>
+													<input id=nik name=nik placeholder="Nomor KTP" class=wideBox type=number>
+												</div>
+												<div class="s-12 l-12 m-12">
+													<div class="margin">
+														<div class="s-12 m-8 l-8">
+															<small>Alamat Domisili Pontianakd* <span class=signup-error></span></small>
+															<textarea class=wideBox id=alamat_ktp name=alamat[] placeholder="Alamat Domisili Pontianak" style=text-transform:capitalize></textarea>
+														</div>
+														<div class="s-4 m-2 l-2">
+															<small>Rt:* <span class=signup-error></span></small>
+															<input id=rt_ktp name=rt[] placeholder=Rt>
+														</div>
+														<div class="s-4 m-2 l-2">
+															<small>Rw:* <span class=signup-error></span></small>
+															<span class=signup-error id=rw_ktp-error></span>
+															<input id=rw_ktp name=rw[] placeholder=Rw>
+														</div>
+													</div>
+												</div>
+												<div class="l-6 m-6 s-6">
+													<small>Propinsi* <span class=signup-error></span></small>
+													<select class=normal-select id=propinsi_ktp name=propinsi[]>
+														<option value=61 selected>Prop. Kalimantan Barat
+													</select>
+												</div>
+												<div class="l-6 m-6 s-6">
+													<small>Kota/ Kabupaten* <span class=signup-error></span></small>
+													<select class=normal-select id=kab_ktp name=kab[]>
+														<option value="" selected>- Pilih Kota / Kab -
+														<option value=6112>Kab. Kubu Raya
+														<option value=6171>Kota Pontianak
+													</select>
+												</div>
+												<div class="l-6 m-6 s-6">
+													<small>Kecamatan* <span class=signup-error></span></small>
+													<select class=normal-select id=kec_ktp name=kec[]>
+														<option value="" selected>- Pilih Kecamatan -
+													</select>
+												</div>
+												<div class="l-6 m-6 s-6">
+													<small>Desa / Lurah* <span class=signup-error></span></small>
+													<select class=normal-select id=kel_ktp name=kel[]>
+														<option value="" selected>- Pilih Desa / Lurah -
+													</select>
+												</div>
 											</div>
 										</div>
-										<div style="padding-left: 10px;">
-											<b>RIWAYAT SKCK PEMOHON</b>
+
+										
+										
+										<div class="s-12 m-12 l-12">
+											<div class="align-content-center margin-bottom">
+												<!-- <button id="btnLoad" class="btn btn-ajax btn-success" data-icon="icon-check">
+													<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
+												</button> -->
+												<button id="btnLoad" class="btn btn-success"
+														data-icon="check"
+														data-url="https://jsonplaceholder.typicode.com/posts"
+														data-method="POST"
+														data-alert="Tombol: Verifikasi terkirim!">
+													<i class="icon icon-check"></i><span class="text">Proses Verifikasi</span>
+												</button>
+											</div>
 										</div>
-										<table id="myTable" style="width: 100%;" class="table table-white table-rounded table-pointer table-warning margin-bottom">
-											<thead>
-												<tr>
-													<th>ID</th>
-													<th>Nama</th>
-													<th>Alamat</th>
-												</tr>
-											</thead>
-										</table>
 									</div>
 								</div>
 							</div>
-							<div class="box box-content box-top">
+							<!-- PENCARIAN DATA PEMOHON -->
+							<div id="data-pemohon" class="box box-content">
 								<div class="margin">
-									<style>
-										
-									</style>
 									<div class="s-12 m-12 l-12">
-										<div class="radio-group">
-											<input type="radio" id="option1" name="options" class="segment" checked>
-											<label for="option1" class="segment-label"><i class="icon icon-user"></i>Option 1</label>
+										<div style="padding: 10px 0;" class="align-content-center">
+											<div class="radio-group">
+												<input type="radio" id="editor" name="options" class="segment" checked>
+												<label for="editor" class="segment-label"><i class="icon icon-sli-note"></i>Editor</label>
 
-											<input type="radio" id="option2" name="options" class="segment">
-											<label for="option2" class="segment-label"><i class="icon icon-user"></i>Option 2</label>
+												<input type="radio" id="operator" name="options" class="segment">
+												<label for="operator" class="segment-label"><i class="icon icon-user"></i>Operator</label>
 
-											<input type="radio" id="option3" name="options" class="segment">
-											<label for="option3" class="segment-label"><i class="icon icon-user"></i>Option 3</label>
-
-											<input type="radio" id="option4" name="options" class="segment">
-											<label for="option4" class="segment-label"><i class="icon icon-user"></i>Option 4 test</label>
-										</div>
-										<div class="box-editor margin-bottom">
-											<div class="margin">
-												<div class="s-12 m-12 l-4">
-													<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Nomor KTP</b></span>
-													<input class="searching cari-nik" style="width:100%;" type="number" name="nomor_identitas" placeholder="....."> 
-												</div>				
-												<div class="s-12 m-12 l-4">
-													<div class=align-content-center style="padding-top: 17px;padding-bottom: 17px;">
-														<button id="btnLoad" class="btn btn-success rounded2x">
-															<i class="icon icon-plus"></i><span class="text">Tambah Data</span>
-														</button>
-														<button id="btnLoad" class="btn btn-danger rounded2x">
-															<i class="icon icon-reload"></i><span class="text">Cari Ulang</span>
-														</button>							 
-													</div>
-												</div>
-												<div class="s-12 m-12 l-4 margin-bottom"> 
-													<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Data Pemohon <span id="mod-info" class="la-info" onclick="$('.informasi').fadeToggle()" style="cursor:pointer;font-style:italic;padding:0 8px 0 10px;border-radius:25px"><i style="position:relative;top:.89px;margin-right:2px;margin-left:-8px" class="icon icon-sli-info"></i>info<span></b></span>
-													<input class="searching cari-nama" style="width:100%;"  type="text" name="pencarian" placeholder=".....">
-												</div>						
-												<div class="informasi s-12 m-12 l-12" style="display:none"> 
-													<div class="editor-info">
-														<ol>
-															<li>Dalam melakukan pencarian KTP/NIK & Data Pemohon agar menekan enter setelah pengetikan di form input pengisian</li>
-															<li>Untuk pencarian data Pemohon menjangkau data : (nama,alamat,nomor_hp,nama_ibu & nama_ayah) serta dapat dikombinasikan dengan jumlah hasil pencarian yg ingin ditampilkan. Komposisi dari pencarian tsb menggunakan separator/tanda pemisah ';' (titik koma) pada parameternya, sbg contoh: [fulan;100] </li>
-															<li>Format excel dapat di unduh <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/skck_print.zip" download>disini</a>, sebelum menggunakan file tsb agar terlebih dahulu membaca dokumentasinya di <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/juk_download.pdf" download>link ini</a></li>
-															<li>Pake microsoft Edge jika Chrome bermasalah dalam mengakses dan rajin-rajin hapus history browser</li>
-														</ol>
-													</div>
-												</div>							
+												<input type="radio" id="pengaturan" name="options" class="segment">
+												<label for="pengaturan" class="segment-label"><i class="icon icon-sli-settings"></i>Pengaturan</label>
 											</div>
 										</div>
-										<table class="table table-rounded table-white table-pointer table-secondary font-16 margin-bottom">
-											<thead>
-												<tr>
-													<th><i class="icon-sli-list"></i></th>
-													<th>NAMA</th>
-													<th>ALAMAT</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="text-center">1</td>
-													<td>ano1</td>
-													<td>alamat 1 kjasfhk kjashfkjh asdkjfhkasjdhf kasjdhfkjsahfd ksajhfkdjsh</td>
-												</tr>
-												<tr>
-													<td class="text-center">2</td>
-													<td>ano 2</td>
-													<td>alamat 2 kashf kajshfkjhaksjfksalkfdj lasdfkpoaskfl lsakfdjlksdafj dslkj lksaj lkasjlfdkj asldkfjlaskjdf saldkfjlsakjfd lsakdjflsakjfls a</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="align-content-center margin-bottom">
-											<ul class="pagination">
-												<li><a href="#" class="prev active">&laquo </a></li>
-												<li><a href="#">1</a></li>
-												<li> <a href="#">2</a></li>
-												<li> <a href="#" class="active">3</a></li>
-												<li> <a href="#">4</a></li>
-												<li> <a href="#">5</a></li>
-												<li> <a href="#">6</a></li>
-												<li> <a href="#">7</a></li>
-												<li> <a href="#">8</a></li>
-												<li> <a href="#">9</a></li>
-												<li><a href="#" class="next">  &raquo;</a></li>
-											</ul>
+										<!-- PANEL PENGATURAN DISINI -->
+										<div id="panel-pengaturan" class="panel-segment">
+											<h4>Pengaturan</h4>
+										</div>
+										<!-- PANEL OPERATOR DISINI -->
+										<div id="panel-operator" class="panel-segment">
+											<h4>Operator</h4>
+										</div>	
+										<!-- PANEL EDITOR DISINI -->
+										<div id="panel-editor" class="panel-segment">
+											<div class="box-editor margin-bottom">
+												<div class="margin">
+													<div class="s-12 m-12 l-4">
+														<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Nomor KTP</b></span>
+														<input class="searching cari-nik" style="width:100%;" type="number" name="nomor_identitas" placeholder="....."> 
+													</div>				
+													<div class="s-12 m-12 l-4">
+														<div class=align-content-center style="padding-top: 17px;padding-bottom: 17px;">
+															<button id="btnLoad" class="btn btn-success rounded2x">
+																<i class="icon icon-plus"></i><span class="text">Tambah Data</span>
+															</button>
+															<button id="btnLoad" class="btn btn-danger rounded2x">
+																<i class="icon icon-reload"></i><span class="text">Cari Ulang</span>
+															</button>							 
+														</div>
+													</div>
+													<div class="s-12 m-12 l-4 margin-bottom"> 
+														<span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:orange">Cari Data Pemohon <span id="mod-info" class="la-info" onclick="$('.informasi').fadeToggle()" style="cursor:pointer;font-style:italic;padding:0 8px 0 10px;border-radius:25px"><i style="position:relative;top:.89px;margin-right:2px;margin-left:-8px" class="icon icon-sli-info"></i>info<span></b></span>
+														<input class="searching cari-nama" style="width:100%;"  type="text" name="pencarian" placeholder=".....">
+													</div>						
+													<div class="informasi s-12 m-12 l-12" style="display:none"> 
+														<div class="editor-info">
+															<ol>
+																<li>Dalam melakukan pencarian KTP/NIK & Data Pemohon agar menekan enter setelah pengetikan di form input pengisian</li>
+																<li>Untuk pencarian data Pemohon menjangkau data : (nama,alamat,nomor_hp,nama_ibu & nama_ayah) serta dapat dikombinasikan dengan jumlah hasil pencarian yg ingin ditampilkan. Komposisi dari pencarian tsb menggunakan separator/tanda pemisah ';' (titik koma) pada parameternya, sbg contoh: [fulan;100] </li>
+																<li>Format excel dapat di unduh <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/skck_print.zip" download>disini</a>, sebelum menggunakan file tsb agar terlebih dahulu membaca dokumentasinya di <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/juk_download.pdf" download>link ini</a></li>
+																<li>Pake microsoft Edge jika Chrome bermasalah dalam mengakses dan rajin-rajin hapus history browser</li>
+															</ol>
+														</div>
+													</div>							
+												</div>
+											</div>
+											<table class="table table-rounded table-white table-pointer table-secondary font-16 margin-bottom">
+												<thead>
+													<tr>
+														<th><i class="icon-sli-list"></i></th>
+														<th>NAMA</th>
+														<th>ALAMAT</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-center">1</td>
+														<td>ano1</td>
+														<td>alamat 1 kjasfhk kjashfkjh asdkjfhkasjdhf kasjdhfkjsahfd ksajhfkdjsh</td>
+													</tr>
+													<tr>
+														<td class="text-center">2</td>
+														<td>ano 2</td>
+														<td>alamat 2 kashf kajshfkjhaksjfksalkfdj lasdfkpoaskfl lsakfdjlksdafj dslkj lksaj lkasjlfdkj asldkfjlaskjdf saldkfjlsakjfd lsakdjflsakjfls a</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="align-content-center margin-bottom">
+												<ul class="pagination">
+													<li><a href="#" class="prev active">&laquo </a></li>
+													<li><a href="#">1</a></li>
+													<li> <a href="#">2</a></li>
+													<li> <a href="#" class="active">3</a></li>
+													<li> <a href="#">4</a></li>
+													<li> <a href="#">5</a></li>
+													<li> <a href="#">6</a></li>
+													<li> <a href="#">7</a></li>
+													<li> <a href="#">8</a></li>
+													<li> <a href="#">9</a></li>
+													<li><a href="#" class="next">  &raquo;</a></li>
+												</ul>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -260,6 +345,15 @@
 			<script src="js/style.js?v=1.8.3"></script>
 			<script>
 				$(document).ready(function() {
+					$('#panel-editor').show();
+					$('input[type="radio"].segment').on('change', function(){
+						var selectedId = $(this).attr('id');
+						// Sembunyikan semua panel
+						$('.panel-segment').hide();
+						// Tampilkan panel yang sesuai
+						$('#panel-' + selectedId).show();
+					});
+
 					// contoh penggunaan autocomplete
 					$.getJSON("source/negara.json", function(data) {
 						!data || $('#country-input').simpleAutocomplete({
