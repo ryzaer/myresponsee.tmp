@@ -811,12 +811,6 @@ body.modal-margin {
   font-size: 12px;
   cursor: pointer;
 }
-.list-group li:hover {
-  background-color: #585858;
-}
-.list-group li:hover span {
-  color: white;
-}
 .list-group li .icon {
   color: #585858;
   background-color: #fff;
@@ -826,4 +820,10 @@ body.modal-margin {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+.list-group li:hover {
+  background-color: #585858;
+}
+.list-group li:hover span {
+  color: white;
 }
