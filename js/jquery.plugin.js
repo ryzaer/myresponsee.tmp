@@ -3,7 +3,6 @@ function scss(e){var t=document.head||document.getElementsByTagName("head")[0],c
 */ 
 /** Simple Autocomplete 
  * 
-!function(t){t.fn.simpleAutocomplete=function(e){var a=t.extend({data:[]},e),n=t(this),i=t('<div class="autocomplete-suggestions"></div>').insertAfter(n),o=-1;function l(e,a){var n=new RegExp("("+a+")","ig");return function(e){return t("<div/>").text(e).html()}(e).replace(n,'<span class="highlight">$1</span>')}function r(e){0;var n=function(e){return t.grep(a.data,function(t){return-1!==t.label.toLowerCase().indexOf(e.toLowerCase())})}(e);i.empty().hide(),o=-1,e&&0!==n.length&&(t.each(n,function(a,n){var o=l(n.label,e);t('<div class="autocomplete-item"></div>').html(o).attr("data-id",n.id).attr("data-label",n.label).appendTo(i)}),i.show())}function c(t){var e=i.children(".autocomplete-item");if(0!==e.length){(o+=t)<0&&(o=e.length-1),o>=e.length&&(o=0),e.removeClass("hover");var a=e.eq(o).addClass("hover"),n=i.scrollTop(),l=i.height(),r=a.position().top,c=a.outerHeight();r+c>l?i.scrollTop(n+r+c-l):r<0&&i.scrollTop(n+r)}}n.on("keydown",function(t){var e,a=t.which;38===a?(c(-1),t.preventDefault()):40===a?(c(1),t.preventDefault()):13===a?((e=i.children(".autocomplete-item").eq(o)).length&&(n.val(e.data("label")).data("id",e.data("id")),i.hide()),t.preventDefault()):(27===a||9===a)&&i.hide()}),n.on("keyup",function(e){-1===t.inArray(e.which,[13,38,40,27,9])&&r(n.val())}),i.on("click",".autocomplete-item",function(){n.val(t(this).data("label")).data("id",t(this).data("id")),i.hide()}),n.on("blur",function(){setTimeout(function(){var e=t.trim(n.val().toLowerCase()),i=!1;t.each(a.data,function(t,a){if(a.label.toLowerCase()===e)return n.data("id",a.id),i=!0,!1}),i||n.data("id",null)},150)}),t(document).on("click",function(e){t(e.target).closest(n).length||t(e.target).closest(i).length||i.hide()})}}(jQuery);
 */
 (function ($) {
     $.fn.simpleAutocomplete = function (options) {
@@ -396,5 +395,46 @@ $("#myTable").simplePaginate('destroy');
                 });
             }, settings.autoClose);
         }
+    };
+})(jQuery);
+// anti XSS dan even On Off for jquery 1.8.3
+// https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js
+// Contoh Penggunaan
+// $(".target").xhtml('<img src="x" onerror="alert(\'XSS\')">');
+// $(".target").xbind('click',function(e){});
+(function($) {
+    $.fn.xbind = function(eventName, callback) {
+        return this.each(function() {
+            $(this).off(eventName).on(eventName, callback);
+        })
+    };
+    $.fn.xhtml = function(source) {
+
+        function sanitizeAndRender(element) {
+            var cleanInput = DOMPurify.sanitize(source);
+            $(element).html(cleanInput);
+        }
+
+        function loadDOMPurify(callback) {
+            if (typeof DOMPurify === 'undefined') {
+                $.getScript('https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js')
+                    .done(function() {
+                        callback();
+                    })
+                    .fail(function() {
+                        console.error('Failed to load DOMPurify.');
+                    });
+            } else {
+                callback();
+            }
+        }
+
+        return this.each(function() {
+            var element = this; // Ini DOM element yang spesifik
+            loadDOMPurify(function() {
+                sanitizeAndRender(element);
+            });
+        });
+
     };
 })(jQuery);

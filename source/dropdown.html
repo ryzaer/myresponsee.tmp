@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Navigation Preview</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .aside-nav ul, .nav-menu ul { list-style: none; padding: 0; }
+        .aside-nav > ul > li, .nav-menu > ul > li { margin-bottom: 10px; }
+        .aside-nav ul ul, .nav-menu ul ul { display: none; }
+        .show-aside-ul, .show-ul { display: block !important; }
+        .tab-item { display: none; }
+        .tab-item:first-child { display: block; }
+        .active-btn { font-weight: bold; color: red; }
+        .show-menu { display: block !important; }
+        .tooltip-content { display: none; position: absolute; background: #333; color: #fff; padding: 5px; border-radius: 4px; }
+        .modal-backdrop, .modal-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+        .modal-backdrop { background: rgba(0,0,0,0.5); }
+        .modal-box { background: #fff; margin: 10% auto; padding: 20px; width: 300px; z-index: 10; }
+        .modal-box.show { display: block; }
+        .no-scroll { overflow: hidden; }
+        .box-menu li li span { color: black; }
+        .accordion-1 .accobox { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="aside-nav">
+        <div class="aside-nav-text">Toggle Aside Menu</div>
+        <ul>
+            <li class="aside-submenu">
+                <a href="#">Aside Item 1</a>
+                <ul>
+                    <li>Sub Item 1</li>
+                    <li class="aside-sub-submenu">
+                        <a href="#">Sub Item 2</a>
+                        <ul>
+                            <li>Sub Sub Item 1</li>
+                            <li>Sub Sub Item 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="nav-menu">
+        <div class="nav-text">Toggle Nav Menu</div>
+        <ul>
+            <li class="submenu">
+                <a href="#">Nav Item 1</a>
+                <ul>
+                    <li>Sub Item 1</li>
+                    <li class="sub-submenu">
+                        <a href="#">Sub Item 2</a>
+                        <ul>
+                            <li>Sub Sub Item 1</li>
+                            <li>Sub Sub Item 2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="box-menu">
+        <ul>
+            <li>
+                <ul>
+                    <li><span>Box Item</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="accordion-1">
+        <div class="head"><h4>Accordion Header</h4><span class="arrow">&gt;</span></div>
+        <div class="accobox">Accordion Content</div>
+    </div>
+
+    <button class="tothetop">Scroll to Top</button>
+
+    <button class="open-modal-btn">Open Modal</button>
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+        <button class="close-btn">Close</button>
+        <p>Modal Content</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Aside Nav Animation
+            $('.aside-nav > ul > li.aside-submenu > a').on('click', function (e) {
+                e.preventDefault();
+                var submenu = $(this).next('ul');
+
+                $('.aside-nav > ul > li.aside-submenu > ul').not(submenu).slideUp('slow').removeClass('show-aside-ul');
+
+                submenu.slideToggle('slow').toggleClass('show-aside-ul');
+            });
+
+            $('.aside-nav > ul ul > li.aside-sub-submenu > a').on('click', function (e) {
+                e.preventDefault();
+                var submenu = $(this).next('ul');
+
+                $('.aside-nav > ul ul > li > ul').not(submenu).slideUp('slow').removeClass('show-aside-ul');
+
+                submenu.slideToggle('slow').toggleClass('show-aside-ul');
+            });
+
+            // Nav Menu Animation
+            $('.nav-menu > ul li.submenu > a').on('click', function (e) {
+                e.preventDefault();
+                var submenu = $(this).next('ul');
+
+                $('.nav-menu > ul li.submenu > ul').not(submenu).slideUp('slow').removeClass('show-ul');
+
+                submenu.slideToggle('slow').toggleClass('show-ul');
+            });
+
+            $('.nav-menu > ul ul > li.sub-submenu > a').on('click', function (e) {
+                e.preventDefault();
+                var submenu = $(this).next('ul');
+
+                $('.nav-menu > ul ul li > ul').not(submenu).slideUp('slow').removeClass('show-ul');
+
+                submenu.slideToggle('slow').toggleClass('show-ul');
+            });
+
+            $('.nav-text').click(function() {
+                $('.nav-menu > ul').toggleClass('show-menu');
+            });
+
+            $('.aside-nav-text').click(function() {
+                $('.aside-nav > ul').toggleClass('show-menu');
+            });
+
+            $('.box-menu li li').hover(function() {
+                $(this).find('span').css({ color: 'white' });
+            });
+
+            $('.accordion-1 .head').click(function() {
+                $(this).toggleClass('active');
+                $(this).parent().find('.head h4').toggleClass('text-transform');
+                $(this).parent().find('.arrow').toggleClass('arrow-animate');
+                $(this).parent().find('.accobox').slideToggle(280);
+            });
+
+            $('.accordion-1:last-child').click(function() {
+                var __this = this;
+                if (!$(this).find('.head').hasClass('active') && $(this).find('.head').css('border-radius') == '0px') {
+                    setTimeout(() => {
+                        $(__this).find('.head').css({'border-radius': '0px 0px 10px 10px'});
+                    }, 280);
+                } else {
+                    $(__this).find('.head').css({'border-radius': '0px'});
+                }
+            });
+
+            $('.tothetop').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({ scrollTop: '0px' }, 200);
+            });
+
+            $('.open-modal-btn').click(openModal);
+            $('.close-btn').click(closeModal);
+
+            $('.modal-backdrop, .modal-box').click(function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        function openModal() {
+            $('.modal-backdrop').fadeIn(200);
+            $('.modal-box').fadeIn(200).addClass('show');
+            $('body').addClass('no-scroll');
+            if (hasVerticalScrollbar())
+                $('body').addClass('modal-margin');
+        }
+
+        function closeModal() {
+            $('.modal-box').fadeOut(200).removeClass('show');
+            $('.modal-backdrop').fadeOut(200);
+            $('body').removeClass('no-scroll');
+            if (hasVerticalScrollbar())
+                $('body').removeClass('modal-margin');
+        }
+
+        function hasVerticalScrollbar() {
+            return document.body.scrollHeight > document.body.clientHeight;
+        }
+    </script>
+</body>
+</html>

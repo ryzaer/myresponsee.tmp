@@ -4,6 +4,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline';"> -->
+
 		<title>Polresta Pontianak</title>
 		<meta name="application-name" content="Polresta Pontianak"/>
 		<meta itemprop="name" name="apple-mobile-web-app-title" content="Pengaduan"/>
@@ -396,11 +398,11 @@
 									var $this = $(this);
 									$this.parent('tr').addClass('active').css({cursor: "progress"});
 									$('.simple-pg button').attr('disabled', true).css({cursor: "not-allowed"});
-									$('#btnLoad.active').off().on('click', function() {
+									$('#btnLoad.active').xbind('click', function() {
 										$this.parent('tr').removeClass('active').css({cursor: "pointer"});
 										$('#btnLoad').removeClass('btn-warning active').find('span').text('Cetak Keperluan');
 										$('.simple-pg button').attr('disabled', false).css({cursor: "pointer"});
-										$(this).off();
+										$(this).off('click');
 										// panggil simple alert
 										$.simpleAlert({
 										    title: 'Sukses',
