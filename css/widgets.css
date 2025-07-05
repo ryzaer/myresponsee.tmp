@@ -137,8 +137,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 	color:#2f363d;
 }
 
-
-
 select,input,button{ min-height:26px;background-color:white;margin-top:-1px; }
 textarea{ height:50px;margin:-1px 0px 3px 0px; }
 select:focus, textarea:focus, input:focus{ outline: none; }

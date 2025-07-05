@@ -104,9 +104,21 @@ jQuery(document).ready(function(t) {
         }
     }),
     /** scrolling to the top */
-    $('.tothetop').on('click',function(e){
+    $('#tothetop').on('click',function(e){
         e.preventDefault(),
         $('html, body').animate({scrollTop: '0px'}, 200)
+    }),
+    $(window).on('scroll', function() {
+        var scrollPosition = $(window).scrollTop() + $(window).height();
+        var documentHeight = $(document).height();
+        var scrollPercentage = (scrollPosition / documentHeight) * 100;
+        if (scrollPercentage >= 60) {
+            $('#tothetop').addClass('show');
+        }
+        // Tombol akan hilang jika posisi scroll kembali ke atas (kurang dari 10% halaman)
+        if ($(window).scrollTop() <= documentHeight * 0.1) {
+            $('#tothetop').removeClass('show');
+        }
     }),
     
     /** MODAL */
