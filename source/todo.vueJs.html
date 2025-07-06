@@ -1,6 +1,6 @@
 <!--
 File: todo-vue.html
-To-Do List versi Vue.js
+To-Do List versi Vue.js dengan Axios (simulasi)
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,7 @@ To-Do List versi Vue.js
     <meta charset="UTF-8">
     <title>To-Do List - Vue.js</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -36,11 +37,18 @@ To-Do List versi Vue.js
                 addTask() {
                     if (this.newTask.trim() !== '') {
                         this.tasks.push(this.newTask);
+                        this.saveTask(this.newTask);
                         this.newTask = '';
                     }
                 },
                 removeTask(index) {
                     this.tasks.splice(index, 1);
+                },
+                saveTask(task) {
+                    axios.post('https://jsonplaceholder.typicode.com/posts', { title: task })
+                        .then(response => {
+                            console.log('Task saved (Axios):', response.data);
+                        });
                 }
             }
         });

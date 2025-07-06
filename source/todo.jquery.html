@@ -1,3 +1,7 @@
+<!--
+File: todo-jquery.html
+To-Do List versi jQuery dengan AJAX (simulasi)
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +22,25 @@
         $(document).ready(function() {
             let taskCount = 0;
 
+            function saveTask(task) {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/posts',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ title: task }),
+                    success: function(response) {
+                        console.log('Task saved (jQuery):', response);
+                    }
+                });
+            }
+
             $("#addTodo").click(function() {
                 let task = $("#todoInput").val();
                 if (task.trim() !== "") {
                     $("#todoList").append('<li>' + task + ' <button class="deleteBtn">Delete</button></li>');
                     taskCount++;
                     $("#taskCount").text(taskCount);
+                    saveTask(task);
                     $("#todoInput").val('');
                 }
             });
