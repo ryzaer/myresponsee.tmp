@@ -1,37 +1,43 @@
 <!--
 File: todo-vue.html
-To-Do List versi Vue.js dengan Axios (simulasi)
+To-Do List versi Vue.js dengan Axios dan Komponen Modular
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List - Vue.js</title>
+    <title>To-Do List - Vue.js Modular</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app">
-        <h2>To-Do List (Vue.js)</h2>
-        <input type="text" v-model="newTask" placeholder="Add a task">
-        <button @click="addTask">Add</button>
-
-        <ul>
-            <li v-for="(task, index) in tasks" :key="index">
-                {{ task }}
-                <button @click="removeTask(index)">Delete</button>
-            </li>
-        </ul>
-
-        <p>Total Tasks: {{ tasks.length }}</p>
+        <todo-component></todo-component>
     </div>
 
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                newTask: '',
-                tasks: []
+        Vue.component('todo-component', {
+            template: `
+                <div>
+                    <h2>To-Do List (Vue.js Modular)</h2>
+                    <input type="text" v-model="newTask" placeholder="Add a task">
+                    <button @click="addTask">Add</button>
+
+                    <ul>
+                        <li v-for="(task, index) in tasks" :key="index">
+                            {{ task }}
+                            <button @click="removeTask(index)">Delete</button>
+                        </li>
+                    </ul>
+
+                    <p>Total Tasks: {{ tasks.length }}</p>
+                </div>
+            `,
+            data() {
+                return {
+                    newTask: '',
+                    tasks: []
+                };
             },
             methods: {
                 addTask() {
@@ -47,10 +53,14 @@ To-Do List versi Vue.js dengan Axios (simulasi)
                 saveTask(task) {
                     axios.post('https://jsonplaceholder.typicode.com/posts', { title: task })
                         .then(response => {
-                            console.log('Task saved (Axios):', response.data);
+                            console.log('Task saved (Vue Modular):', response.data);
                         });
                 }
             }
+        });
+
+        new Vue({
+            el: '#app'
         });
     </script>
 </body>

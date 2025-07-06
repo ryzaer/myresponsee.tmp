@@ -1,16 +1,16 @@
 <!--
 File: todo-jquery.html
-To-Do List versi jQuery dengan AJAX (simulasi)
+To-Do List versi jQuery dengan AJAX (simulasi) dan Modularisasi
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List - jQuery</title>
+    <title>To-Do List - jQuery Modular</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>To-Do List (jQuery)</h2>
+    <h2>To-Do List (jQuery Modular)</h2>
     <input type="text" id="todoInput" placeholder="Add a task">
     <button id="addTodo">Add</button>
 
@@ -19,8 +19,39 @@ To-Do List versi jQuery dengan AJAX (simulasi)
     <p>Total Tasks: <span id="taskCount">0</span></p>
 
     <script>
-        $(document).ready(function() {
-            let taskCount = 0;
+        // Modul ToDo Manager
+        var ToDoModule = (function($) {
+            var taskCount = 0;
+
+            function init() {
+                bindEvents();
+            }
+
+            function bindEvents() {
+                $('#addTodo').on('click', addTask);
+                $(document).on('click', '.deleteBtn', deleteTask);
+            }
+
+            function addTask() {
+                var task = $('#todoInput').val();
+                if (task.trim() !== '') {
+                    $('#todoList').append('<li>' + task + ' <button class="deleteBtn">Delete</button></li>');
+                    taskCount++;
+                    updateCounter();
+                    saveTask(task);
+                    $('#todoInput').val('');
+                }
+            }
+
+            function deleteTask() {
+                $(this).parent().remove();
+                taskCount--;
+                updateCounter();
+            }
+
+            function updateCounter() {
+                $('#taskCount').text(taskCount);
+            }
 
             function saveTask(task) {
                 $.ajax({
@@ -29,27 +60,19 @@ To-Do List versi jQuery dengan AJAX (simulasi)
                     contentType: 'application/json',
                     data: JSON.stringify({ title: task }),
                     success: function(response) {
-                        console.log('Task saved (jQuery):', response);
+                        console.log('Task saved (jQuery Modular):', response);
                     }
                 });
             }
 
-            $("#addTodo").click(function() {
-                let task = $("#todoInput").val();
-                if (task.trim() !== "") {
-                    $("#todoList").append('<li>' + task + ' <button class="deleteBtn">Delete</button></li>');
-                    taskCount++;
-                    $("#taskCount").text(taskCount);
-                    saveTask(task);
-                    $("#todoInput").val('');
-                }
-            });
+            return {
+                init: init
+            };
+        })(jQuery);
 
-            $(document).on('click', '.deleteBtn', function() {
-                $(this).parent().remove();
-                taskCount--;
-                $("#taskCount").text(taskCount);
-            });
+        // Initialize module
+        $(document).ready(function() {
+            ToDoModule.init();
         });
     </script>
 </body>
