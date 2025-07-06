@@ -1,0 +1,49 @@
+<!--
+File: todo-vue.html
+To-Do List versi Vue.js
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List - Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>To-Do List (Vue.js)</h2>
+        <input type="text" v-model="newTask" placeholder="Add a task">
+        <button @click="addTask">Add</button>
+
+        <ul>
+            <li v-for="(task, index) in tasks" :key="index">
+                {{ task }}
+                <button @click="removeTask(index)">Delete</button>
+            </li>
+        </ul>
+
+        <p>Total Tasks: {{ tasks.length }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                tasks: []
+            },
+            methods: {
+                addTask() {
+                    if (this.newTask.trim() !== '') {
+                        this.tasks.push(this.newTask);
+                        this.newTask = '';
+                    }
+                },
+                removeTask(index) {
+                    this.tasks.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

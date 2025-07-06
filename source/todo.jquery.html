@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List - jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>To-Do List (jQuery)</h2>
+    <input type="text" id="todoInput" placeholder="Add a task">
+    <button id="addTodo">Add</button>
+
+    <ul id="todoList"></ul>
+
+    <p>Total Tasks: <span id="taskCount">0</span></p>
+
+    <script>
+        $(document).ready(function() {
+            let taskCount = 0;
+
+            $("#addTodo").click(function() {
+                let task = $("#todoInput").val();
+                if (task.trim() !== "") {
+                    $("#todoList").append('<li>' + task + ' <button class="deleteBtn">Delete</button></li>');
+                    taskCount++;
+                    $("#taskCount").text(taskCount);
+                    $("#todoInput").val('');
+                }
+            });
+
+            $(document).on('click', '.deleteBtn', function() {
+                $(this).parent().remove();
+                taskCount--;
+                $("#taskCount").text(taskCount);
+            });
+        });
+    </script>
+</body>
+</html>
