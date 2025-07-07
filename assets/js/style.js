@@ -122,27 +122,40 @@ jQuery(document).ready(function(t) {
     }),
     
     /** MODAL */
-    $('.open-modal-btn').click(openModal),
-    $('.close-btn').click(closeModal),
+    $('.open-modal-btn').on('click',function() {
+        $('.modal-backdrop').dynamicModal({
+            title: 'Ingin Keluar Aplikasi?',
+            type: 'danger',
+            message: 'Apakah Anda yakin ingin logout?',
+            image: 'assets/image/wewenang.webp',
+            buttonText: 'Logout',
+            // timeOut : 3000,
+            onConfirm: function() {
+                console.log('Logout diproses...');
+                // Arahkan ke logout atau kirim request POST
+                
+            }
+        });
+    }),
+    // $('.close-btn').click(closeModal),
+    
     /** Mencegah modal tertutup saat klik backdrop/modal*/
     $('.modal-backdrop, .modal-box').click(function (e) {
         e.stopPropagation()
     })
+
+    /***LOGIN */
+    // t.ajax({
+    //     url: 'assign/login',
+    //     type: 'POST',
+    //     dataType: 'json',
+    //     data: { key1: 'value1', key2: 'value2' }, // data yang dikirim
+    //     success: function(response) {
+    //         console.log(response);
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.error('Error:', error);
+    //     }
+    // });
 });
-function openModal() {
-    $('.modal-backdrop').fadeIn(200),
-    $('.modal-box').fadeIn(200).addClass('show'),
-    $('body').addClass('no-scroll');
-    if(hasVerticalScrollbar())
-        $('body').addClass('modal-margin')
-}
-function closeModal() {
-    $('.modal-box').fadeOut(200).removeClass('show'),
-    $('.modal-backdrop').fadeOut(200),
-    $('body').removeClass('no-scroll');
-    if(hasVerticalScrollbar()) 
-        $('body').removeClass('modal-margin')
-}
-function hasVerticalScrollbar() {
-  return document.body.scrollHeight > document.body.clientHeight;
-}
+

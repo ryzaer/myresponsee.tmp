@@ -326,34 +326,61 @@ $("#myTable").simplePaginate('destroy');
 (function($) {
     $.simpleAlert = function(options) {
         var settings = $.extend({
+            type: '', // success, error, warning, info
             title: 'Alert',
             message: 'This is a simple alert!',
-            type: '', // success, error, warning, info
+            timeOut: 0, // in milliseconds, 0 = manual close
+            btnText: 'OK',
+            onClose: null, // this callback
+            // Aktif Button disini
             showYesNo: false,
-            yesText: 'Yes',
-            noText: 'No',
-            buttonText: 'OK',
-            autoClose: 0, // in milliseconds, 0 = manual close
-            onClose: null,
-            onYes: null,
-            onNo: null
+            btnYes: 'Yes',
+            onYes: null, // this callback
+            btnNo: 'No',
+            onNo: null // this callback
         }, options);
 
-        // Remove existing alerts
         $('.simple-alert-overlay').remove();
 
-        var overlay = $('<div class="simple-alert-overlay"></div>');
-        var box = $('<div class="simple-alert-box"></div>').addClass(settings.type);
+        // Icon Setup
+        var iconHTML='',typeClass='';
+        switch (settings.type) {
+            case 'success':
+                iconHTML  = '<div class="animated_logo"><i class="icon-check_circle"></i></div>';
+                typeClass = 'success';
+                break;
+            case 'danger':
+                iconHTML  = '<div class="animated_logo"><i class="icon-warning""></i></div>';
+                typeClass = 'danger'
+                break;
+            case 'error':
+                iconHTML  = '<div class="animated_logo"><i class="icon-cancel_circle"></i></div>';
+                typeClass = 'error';
+                break;
+            case 'warning':
+                iconHTML  = '<div class="animated_logo"><i class="icon-warning"></i></div>';
+                typeClass = 'warning';
+                break;
+            case 'info':
+                iconHTML  = '<div class="animated_logo"><i class="icon-information_black"></i></div>';
+                typeClass = 'info';
+                break;
+            default:
+                iconHTML = '';
+        }
 
-        var title = $('<h4></h4>').html(settings.title);
-        var message = $('<p></p>').html(settings.message);
+        var box = $('<div class="simple-alert-box"></div>').addClass(typeClass),
+            title = $('<h4></h4>').text(settings.title),
+            message = $('<p></p>').html(settings.message),
+            overlay = $('<div class="simple-alert-overlay"></div>'),
+            iconElement = $(iconHTML).addClass(typeClass);
 
-        box.append(title, message);
+        box.append(iconElement, title, message);
 
         // Button Config
         if (settings.showYesNo) {
-            var btnYes = $('<button></button>').text(settings.yesText);
-            var btnNo = $('<button></button>').text(settings.noText).css('background', '#6c757d');
+            var btnYes = $('<button class="btn btn-linear btn-success"></button>').text(settings.btnYes),
+                btnNo = $('<button class="btn btn-linear btn-warning"></button>').text(settings.btnNo);
 
             btnYes.on('click', function() {
                 overlay.fadeOut(200, function() {
@@ -370,10 +397,9 @@ $("#myTable").simplePaginate('destroy');
             });
 
             box.append(btnYes, btnNo);
-
-        } else if (settings.autoClose === 0) {
-            // Show single button if no auto-close
-            var btnClose = $('<button></button>').text(settings.buttonText);
+        } else if (settings.timeOut === 0) {
+            var btnType  = typeClass ? ( typeClass === 'error' ? 'danger' : typeClass ) : 'info',
+                btnClose = $(`<button class="btn btn-linear btn-${btnType}"></button>`).text(settings.btnText);
             btnClose.on('click', function() {
                 overlay.fadeOut(200, function() {
                     overlay.remove();
@@ -386,14 +412,13 @@ $("#myTable").simplePaginate('destroy');
         overlay.append(box);
         $('body').append(overlay);
 
-        // Auto close logic
-        if (settings.autoClose > 0) {
+        if (settings.timeOut > 0) {
             setTimeout(function() {
                 overlay.fadeOut(200, function() {
                     overlay.remove();
                     if (typeof settings.onClose === 'function') settings.onClose();
                 });
-            }, settings.autoClose);
+            }, settings.timeOut);
         }
     };
 })(jQuery);
@@ -438,3 +463,90 @@ $("#myTable").simplePaginate('destroy');
 
     };
 })(jQuery);
+
+/*** INI MODAL PLUGIN */
+(function($) {
+    var methods = {
+        open: function(options) {
+            var settings = $.extend({
+                title: 'Konfirmasi',
+                message: 'Apakah Anda yakin?',
+                image: '',
+                type: 'success',
+                buttonText: 'OK',
+                onConfirm: function() {},
+                timeOut: 0 // dalam milidetik, 0 berarti tidak auto close
+            }, options);
+
+            return this.each(function() {
+                var $backdrop = $(this);
+                var timeoutHandler;
+
+                var modalHTML = `
+                    <div class="modal-box latar-bata">
+                        <button class="close-btn">&times;</button>
+                        <div class="modal-content text-center">
+                            ${settings.image ? `<img src="${settings.image}" style="width:70px;display: block; margin: 0 auto;" alt="Gambar">` : ''}
+                            <div style="margin-top:10px" class="margin-bottom">
+                                <h5>${settings.title}</h5>
+                                <p>${settings.message}</p>
+                            </div>
+                            <button class="btn btn-${settings.type} rounded2x confirm-btn">
+                                <i class="icon icon-sli-logout"></i><span class="text">${settings.buttonText}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                // Tampilkan modal
+                $backdrop.html(modalHTML).fadeIn(200);
+                $('body').addClass('no-scroll');
+                $('.modal-box').fadeIn(200).addClass('show');
+
+                // Setup timeout jika ada
+                if (settings.timeOut > 0) {
+                    timeoutHandler = setTimeout(function() {
+                        methods.close.call($backdrop);
+                    }, settings.timeOut);
+                }
+
+                // Bind close event
+                $backdrop.find('.close-btn').off('click').on('click', function() {
+                    if (timeoutHandler) clearTimeout(timeoutHandler);
+                    methods.close.call($backdrop);
+                });
+
+                // Bind confirm event
+                $backdrop.find('.confirm-btn').off('click').on('click', function() {
+                    if (timeoutHandler) clearTimeout(timeoutHandler);
+                    if (typeof settings.onConfirm === 'function') {
+                        settings.onConfirm();
+                    }
+                    methods.close.call($backdrop);
+                });
+            });
+        },
+
+        close: function() {
+            return this.each(function() {
+                var $backdrop = $(this);
+                $('.modal-box').fadeOut(200, function() {
+                    $backdrop.fadeOut(200).empty();
+                    $('body').removeClass('no-scroll');
+                });
+            });
+        }
+    };
+
+    $.fn.dynamicModal = function(methodOrOptions) {
+        if (methods[methodOrOptions]) {
+            return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+            return methods.open.apply(this, arguments);
+        } else {
+            $.error('Method ' + methodOrOptions + ' does not exist on jQuery.dynamicModal');
+        }
+    };
+})(jQuery);
+
+

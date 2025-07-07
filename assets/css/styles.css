@@ -1122,7 +1122,7 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
   /* font-weight:bold; */
   line-height:1.238em;
   padding:7px;
-  background:url(../image/button-tail.gif) 0 0 repeat-x #dbdbdb;
+  background:url(../image/button-tail.webp) 0 0 repeat-x #dbdbdb;
   border-radius:8px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
@@ -1142,13 +1142,13 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
   
 }
 .aside-nav ul ul a { 
- background:url(../image/row-top-tail.gif) left top repeat-x #f6a20e; 
+ background:url(../image/row-top-tail.webp) left top repeat-x #f6a20e; 
  padding:7px; 
 }
  
 .aside-nav li a:link, .aside-nav li a:visited {
  color:#333; 
- background:url(../image/row-top-tail.gif) left top repeat-x #f6a20e; 
+ background:url(../image/row-top-tail.webp) left top repeat-x #f6a20e; 
 }
 .aside-nav li li a:hover, .aside-nav li li.active-item > a, .aside-nav li li.aside-sub-submenu li a:hover {
   color:#fff;
