@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>simpleSelect Keyboard Support</title>
+  <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <style>
+    .simple-select-wrapper {
+      position: relative;
+      width: 250px;
+      font-family: sans-serif;
+    }
+
+    .simple-selected {
+      padding: 10px 35px 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      outline: none;
+    }
+    .simple-selected:focus {
+        border: 1px solid #9d9d9d;
+    }
+
+    .simple-selected::after {
+      content: "▼";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: #888;
+      pointer-events: none;
+      transition: transform 0.2s ease;
+    }
+
+    .simple-selected.active::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .simple-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      display: none;
+      z-index: 10;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .simple-options div {
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+
+    .simple-options div:hover,
+    .simple-options .hovered {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <select class="normal-select">
+    <option value="">Olraigh</option>
+    <option value="1">Opsi 1</option>
+    <option value="2">Opsi 2</option>
+    <option value="3">Opsi 3</option>
+  </select>
+  <select class="normal-select" placeholder="Pilih">
+    <option value="">Pilih opsi</option>
+    <option value="1">Opsi 1</option>
+    <option value="2">Opsi 2</option>
+    <option value="3">Opsi 3</option>
+  </select>
+
+  <script>
+    (function($) {
+      $.fn.simpleSelect = function() {
+        return this.each(function() {
+          var $select = $(this);
+          var $wrapper = $('<div class="simple-select-wrapper"></div>');
+          var firstLabel = $select.find('option:first').text();
+          var $display = $('<div class="simple-selected" tabindex="0">' + firstLabel + '</div>');
+          var $options = $('<div class="simple-options"></div>');
+          var currentIndex = -1;
+
+          // Buat opsi dari <select>
+          $select.find('option').each(function() {
+            var $opt = $(this);
+            var $item = $('<div></div>')
+              .text($opt.text())
+              .attr('data-value', $opt.val());
+            $options.append($item);
+          });
+
+          $select.hide().after($wrapper);
+          $wrapper.append($display).append($options);
+
+          // Klik buka/tutup
+          $display.on('click', function() {
+            $options.toggle();
+            $display.toggleClass('active');
+            currentIndex = -1;
+          });
+
+          // Pilih item
+          $options.on('click', 'div', function() {
+            var value = $(this).attr('data-value');
+            var label = $(this).text();
+            $display.text(label);
+            $select.val(value).trigger('change');
+            $options.hide();
+            $display.removeClass('active');
+          });
+
+          // Klik di luar, tutup
+          $(document).on('click', function(e) {
+            if (!$.contains($wrapper[0], e.target)) {
+              $options.hide();
+              $display.removeClass('active');
+            }
+          });
+
+          // Keyboard navigation
+          $display.on('keydown', function(e) {
+            var items = $options.find('div');
+
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              if (!$options.is(':visible')) {
+                $options.show();
+                $display.addClass('active');
+              } else if (currentIndex >= 0) {
+                items.eq(currentIndex).trigger('click');
+              }
+            } else if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              if (!$options.is(':visible')) {
+                $options.show();
+                $display.addClass('active');
+              }
+              currentIndex = (currentIndex + 1) % items.length;
+              items.removeClass('hovered');
+              items.eq(currentIndex).addClass('hovered');
+              items.eq(currentIndex)[0].scrollIntoView({block: 'nearest'});
+            } else if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              if (!$options.is(':visible')) {
+                $options.show();
+                $display.addClass('active');
+              }
+              currentIndex = (currentIndex - 1 + items.length) % items.length;
+              items.removeClass('hovered');
+              items.eq(currentIndex).addClass('hovered');
+              items.eq(currentIndex)[0].scrollIntoView({block: 'nearest'});
+            } else if (e.key === 'Escape') {
+              e.preventDefault();
+              $options.hide();
+              $display.removeClass('active');
+            }
+          });
+        });
+      };
+    })(jQuery);
+
+    // Inisialisasi plugin
+    $(function() {
+      $('.normal-select').simpleSelect();
+    });
+  </script>
+
+</body>
+</html>
