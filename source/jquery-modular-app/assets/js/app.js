@@ -86,7 +86,6 @@ var App = (function () {
       });
     }
   }
-
   return {
     dispatch:loadExternalScript,
     init:init,
