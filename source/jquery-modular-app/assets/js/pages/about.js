@@ -9,7 +9,7 @@ App.pages.about = (function () {
 
   return {
     init: init,
-    plugins: ['select2'],
-    title: 'About ~ Modular App'
+    plugins: [],
+    title: ''
   };
 })();
